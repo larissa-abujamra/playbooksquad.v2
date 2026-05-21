@@ -342,196 +342,451 @@
           <div class="stage-head">
             <span class="stage-num">Etapa 01</span>
             <span class="stage-title">Monte seu catálogo</span>
-            <span class="stage-tags tags">
-            </span>
           </div>
 
-          <div class="check-block">
-            <div class="task">
-              <div class="task-row with-phone">
-                <input type="checkbox" class="checkbox" id="t-1-1" data-task />
-                <div class="task-main">
-                  <label class="task-text" for="t-1-1">Cadastre seu primeiro produto</label>
-                  <button class="details-toggle" aria-expanded="false" aria-controls="d-1-1"><span>Ver detalhes</span><span class="chev"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                  <div class="details" id="d-1-1">
-                    <div class="details-inner">
-                      <p>Abra o app Squad e toque em <strong>Produtos e Serviços</strong>. Toque no <strong>+</strong> pra adicionar seu primeiro item. Preencha o nome e o preço — foto é opcional mas ajuda muito suas clientes a escolherem.</p>
-                      <p style="margin-top: 8px;"><em>Exemplo: Bolo de chocolate — R$ 85,00</em></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-phone-wrap">
-                  <div class="phone" aria-hidden="true">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                      <div class="phone-status"><span>9:41</span><span class="icons"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M1 11h2v2H1zM4 8h2v5H4zM7 5h2v8H7zM10 2h2v11h-2z"/></svg><svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4.5" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1"/><rect x="11" y="6" width="1.5" height="2" rx=".3" fill="currentColor"/></svg></span></div>
-                      <div class="phone-body has-shot">
-                        <img class="phone-shot" src="./imgs/cadastrar.png" alt="Tela de cadastro de produto">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <p class="stage-intro">O catálogo é a base de tudo — é de onde o Waz puxa informações pra responder clientes e o Fin pra gerar links de pagamento. Existem duas formas de cadastrar:</p>
 
-            <div class="task">
-              <div class="task-row with-phone">
-                <input type="checkbox" class="checkbox" id="t-1-2" data-task />
-                <div class="task-main">
-                  <label class="task-text" for="t-1-2">Adicione pelo menos 5 produtos</label>
-                  <button class="details-toggle" aria-expanded="false" aria-controls="d-1-2"><span>Ver detalhes</span><span class="chev"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                  <div class="details" id="d-1-2">
-                    <div class="details-inner">
-                      <p>Seus 5 produtos mais vendidos já são suficientes pra começar. Você pode adicionar mais depois, sem pressa.</p>
-                      <p style="margin-top: 10px; font-size: 14px; color: var(--ink-3);">Exemplos pra confeitaria:</p>
-                      <div class="product-examples">
-                        <div class="product-item">
-                          <img class="product-img" src="imgs/bolo.png" alt="Bolo de chocolate" onerror="this.style.visibility='hidden'">
-                          <div class="product-info">
-                            <span class="product-name">Bolo de chocolate</span>
-                            <span class="product-desc">Inteiro, cobertura de ganache</span>
-                          </div>
-                          <span class="product-price">R$ 85,00</span>
-                        </div>
-                        <div class="product-item">
-                          <img class="product-img" src="imgs/brigadeiro.png" alt="Caixa de brigadeiros" onerror="this.style.visibility='hidden'">
-                          <div class="product-info">
-                            <span class="product-name">Caixa de brigadeiros</span>
-                            <span class="product-desc">20 unidades, sabores variados</span>
-                          </div>
-                          <span class="product-price">R$ 45,00</span>
-                        </div>
-                        <div class="product-item">
-                          <img class="product-img" src="imgs/ovo.png" alt="Ovo de Páscoa" onerror="this.style.visibility='hidden'">
-                          <div class="product-info">
-                            <span class="product-name">Ovo de Páscoa 250g</span>
-                            <span class="product-desc">Chocolate ao leite, recheio trufado</span>
-                          </div>
-                          <span class="product-price">R$ 65,00</span>
-                        </div>
-                        <div class="product-item">
-                          <img class="product-img" src="imgs/pote.png" alt="Bolo de pote" onerror="this.style.visibility='hidden'">
-                          <div class="product-info">
-                            <span class="product-name">Bolo de pote</span>
-                            <span class="product-desc">Unidade, vários sabores</span>
-                          </div>
-                          <span class="product-price">R$ 12,00</span>
-                        </div>
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-phone-wrap">
-                  <div class="phone" aria-hidden="true">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                      <div class="phone-status"><span>9:41</span><span class="icons"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M1 11h2v2H1zM4 8h2v5H4zM7 5h2v8H7zM10 2h2v11h-2z"/></svg><svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4.5" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1"/><rect x="11" y="6" width="1.5" height="2" rx=".3" fill="currentColor"/></svg></span></div>
-                      <div class="phone-body has-shot">
-                        <img class="phone-shot" src="./imgs/produtos.png" alt="Catálogo com produtos cadastrados">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- Seletor de caminho -->
+          <div class="path-selector">
+            <button class="path-tab is-active" data-path="manual">
+              <span class="path-tab-icon">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M6 9h6M9 6v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="path-tab-text">
+                <strong>Cadastro manual</strong>
+                <small>Adicione produtos um por um no app</small>
+              </span>
+            </button>
+            <button class="path-tab" data-path="waz">
+              <span class="path-tab-icon">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M3 4.5A1.5 1.5 0 014.5 3h9A1.5 1.5 0 0115 4.5v9a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 013 13.5v-9z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M6 7h6M6 9.5h4M6 12h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="path-tab-text">
+                <strong>Enviar pro Waz</strong>
+                <small>Mande um PDF, foto ou planilha</small>
+              </span>
+            </button>
+          </div>
 
-            <div class="task">
-              <div class="task-row">
-                <input type="checkbox" class="checkbox" id="t-1-3" data-task />
-                <div class="task-main">
-                  <label class="task-text" for="t-1-3">Confira se os preços estão certos</label>
-                  <button class="details-toggle" aria-expanded="false" aria-controls="d-1-3"><span>Ver detalhes</span><span class="chev"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                  <div class="details" id="d-1-3">
-                    <div class="details-inner">
-                      <p>Volte na lista em <strong>Produtos e Serviços</strong> e revise. O Waz vai usar esses valores pra responder clientes, e o Fin pra gerar links de pagamento — então é importante que estejam atualizados.</p>
+          <!-- Caminho A: Manual -->
+          <div class="path-content is-visible" id="path-manual">
+            <div class="tutorial-steps">
+
+              <div class="tutorial-step">
+                <div class="tutorial-step-number">1</div>
+                <div class="tutorial-step-body">
+                  <h4>Abra "Produtos e Serviços" no app</h4>
+                  <p>Na tela inicial do Squad, toque em <strong>Produtos e Serviços</strong>. É o ícone com a etiqueta verde.</p>
+                  <!-- Placeholder pra GIF/vídeo -->
+                  <div class="media-placeholder">
+                    <div class="media-placeholder-inner">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" fill="currentColor"/><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                      <span>GIF: abrindo Produtos e Serviços</span>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div class="tutorial-step">
+                <div class="tutorial-step-number">2</div>
+                <div class="tutorial-step-body">
+                  <h4>Toque no + e preencha os dados</h4>
+                  <p>Pra cada produto, preencha:</p>
+                  <ul class="tutorial-list">
+                    <li><strong>Nome</strong> — ex: "Bolo de chocolate"</li>
+                    <li><strong>Preço</strong> — ex: R$ 85,00</li>
+                    <li><strong>Descrição</strong> — ex: "Bolo inteiro com cobertura de ganache, serve 15 fatias"</li>
+                    <li><strong>Foto</strong> <span class="tag-recommended">recomendado</span> — uma foto boa do produto ajuda muito na venda</li>
+                  </ul>
+                  <div class="media-placeholder">
+                    <div class="media-placeholder-inner">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" fill="currentColor"/><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                      <span>GIF: cadastrando um produto</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tutorial-step">
+                <div class="tutorial-step-number">3</div>
+                <div class="tutorial-step-body">
+                  <h4>Repita pros seus principais produtos</h4>
+                  <p>Não precisa cadastrar tudo de uma vez. Comece com os <strong>5 mais vendidos</strong> — você pode adicionar o resto depois.</p>
+                  <p style="margin-top: 10px; font-size: 14px; color: var(--ink-3);">Exemplos pra confeitaria:</p>
+                  <div class="product-examples">
+                    <div class="product-item">
+                      <img class="product-img" src="imgs/bolo.png" alt="Bolo de chocolate" onerror="this.style.visibility='hidden'">
+                      <div class="product-info">
+                        <span class="product-name">Bolo de chocolate</span>
+                        <span class="product-desc">Inteiro, cobertura de ganache</span>
+                      </div>
+                      <span class="product-price">R$ 85,00</span>
+                    </div>
+                    <div class="product-item">
+                      <img class="product-img" src="imgs/brigadeiro.png" alt="Caixa de brigadeiros" onerror="this.style.visibility='hidden'">
+                      <div class="product-info">
+                        <span class="product-name">Caixa de brigadeiros</span>
+                        <span class="product-desc">20 unidades, sabores variados</span>
+                      </div>
+                      <span class="product-price">R$ 45,00</span>
+                    </div>
+                    <div class="product-item">
+                      <img class="product-img" src="imgs/ovo.png" alt="Ovo de Páscoa" onerror="this.style.visibility='hidden'">
+                      <div class="product-info">
+                        <span class="product-name">Ovo de Páscoa 250g</span>
+                        <span class="product-desc">Chocolate ao leite, recheio trufado</span>
+                      </div>
+                      <span class="product-price">R$ 65,00</span>
+                    </div>
+                    <div class="product-item">
+                      <img class="product-img" src="imgs/pote.png" alt="Bolo de pote" onerror="this.style.visibility='hidden'">
+                      <div class="product-info">
+                        <span class="product-name">Bolo de pote</span>
+                        <span class="product-desc">Unidade, vários sabores</span>
+                      </div>
+                      <span class="product-price">R$ 12,00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <div class="callout fin">
-            <span class="ico" aria-hidden="true">💡</span>
-            <span>Não precisa cadastrar tudo de uma vez. Comece com os <strong>5 mais vendidos</strong> e vá adicionando ao longo da semana.</span>
+          <!-- Caminho B: Waz -->
+          <div class="path-content" id="path-waz">
+            <div class="tutorial-steps">
+
+              <div class="tutorial-step">
+                <div class="tutorial-step-number">1</div>
+                <div class="tutorial-step-body">
+                  <h4>Prepare seu arquivo</h4>
+                  <p>Junte as informações dos seus produtos em qualquer formato que você já tenha:</p>
+                  <ul class="tutorial-list">
+                    <li><strong>PDF</strong> do cardápio</li>
+                    <li><strong>Foto</strong> de uma tabela de preços (pode ser do caderno mesmo)</li>
+                    <li><strong>Planilha</strong> com nome e preço</li>
+                    <li><strong>Lista no bloco de notas</strong> do celular</li>
+                  </ul>
+                  <p style="margin-top: 8px; color: var(--ink-3); font-size: 13px;">Não precisa ser bonito — o Waz entende qualquer formato.</p>
+                </div>
+              </div>
+
+              <div class="tutorial-step">
+                <div class="tutorial-step-number">2</div>
+                <div class="tutorial-step-body">
+                  <h4>Abra a conversa com o Waz</h4>
+                  <p>No app, toque em <strong>Assistentes</strong> na barra inferior e abra a conversa com o <strong>Waz</strong>.</p>
+                  <div class="media-placeholder">
+                    <div class="media-placeholder-inner">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" fill="currentColor"/><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                      <span>GIF: abrindo conversa com o Waz</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tutorial-step">
+                <div class="tutorial-step-number">3</div>
+                <div class="tutorial-step-body">
+                  <h4>Envie o arquivo e deixe o Waz trabalhar</h4>
+                  <p>Mande o PDF, foto ou planilha direto na conversa. O Waz lê o arquivo, extrai os produtos e cadastra pra você. Depois é só conferir e ajustar se precisar.</p>
+                  <div class="media-placeholder">
+                    <div class="media-placeholder-inner">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" fill="currentColor"/><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                      <span>GIF: enviando PDF pro Waz</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Checklist de verificação -->
+          <div class="verify-checklist">
+            <h4 class="verify-title">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1z" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8l2 2 3.5-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Antes de seguir, confira:
+            </h4>
+            <div class="check-block">
+              <div class="task">
+                <div class="task-row">
+                  <input type="checkbox" class="checkbox" id="t-1-1" data-task />
+                  <label class="task-text" for="t-1-1">Seus principais produtos estão cadastrados</label>
+                </div>
+              </div>
+              <div class="task">
+                <div class="task-row">
+                  <input type="checkbox" class="checkbox" id="t-1-2" data-task />
+                  <label class="task-text" for="t-1-2">Os preços estão corretos e atualizados</label>
+                </div>
+              </div>
+              <div class="task">
+                <div class="task-row">
+                  <input type="checkbox" class="checkbox" id="t-1-3" data-task />
+                  <label class="task-text" for="t-1-3">As imagens estão cadastradas <span class="tag-recommended">recomendado</span></label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- ETAPA 2 -->
         <div class="stage" id="stage-2">
           <div class="stage-head">
+            <span class="stage-num">Etapa 02</span>
+            <span class="stage-title">Treine seus agentes</span>
           </div>
-          <div class="training-hero">
-            <span class="training-eyebrow">Etapa 02</span>
-            <h3 class="training-headline">Defina o tom dos agentes</h3>
-            <div class="training-agents">
-              <div class="training-agent" style="--agent-color: #E91E8C;">
-                <img src="imgs/maky.png" alt="Maky" />
-                <span class="training-agent-name">Maky</span>
-                <span class="training-agent-role">Marketing</span>
-              </div>
-              <div class="training-agent" style="--agent-color: #2DB67D;">
-                <img src="imgs/waz.png" alt="Waz" />
-                <span class="training-agent-name">Waz</span>
-                <span class="training-agent-role">Atendimento</span>
-              </div>
-              <div class="training-agent" style="--agent-color: #2563EB;">
-                <img src="imgs/fin.png" alt="Fin" />
-                <span class="training-agent-name">Fin</span>
-                <span class="training-agent-role">Financeiro</span>
+
+          <p class="stage-intro">É como contratar funcionários novos — quanto mais você ensinar, melhores os resultados e menos tempo vai perder corrigindo. Essa etapa tem dois momentos:</p>
+
+          <!-- Dois fluxos visuais -->
+          <div class="flow-cards">
+
+            <!-- Fluxo 1 -->
+            <div class="flow-card">
+              <div class="flow-card-number">1</div>
+              <div class="flow-card-content">
+                <h4>Conte sobre seu negócio</h4>
+                <p>Informações que o Waz precisa pra responder suas clientes: horário, localização, regras, produtos.</p>
+                <span class="flow-card-time">~5 min</span>
               </div>
             </div>
 
-            <div class="training-content">
-        
-              <h3 class="training-headline">Seu novo time está quase pronto.<br>Agora, ensine a ele tudo sobre sua confeitaria.</h3>
-              <p class="training-body">É como contratar 3 funcionários novos. Quanto melhor você treinar, melhores os resultados e menos tempo vai perder corrigindo depois. Em poucas perguntas, a gente monta o perfil completo do seu negócio.</p>
+            <!-- Fluxo 2 -->
+            <div class="flow-card">
+              <div class="flow-card-number">2</div>
+              <div class="flow-card-content">
+                <h4>Diga como a IA pode te ajudar</h4>
+                <p>O que te toma mais tempo no dia a dia? O que você quer que os agentes façam — e o que prefere continuar fazendo.</p>
+                <span class="flow-card-time">~5 min</span>
+              </div>
+            </div>
 
-          
+          </div>
 
-              <button type="button" id="start-wizard-btn" class="training-cta">
-                Começar treinamento
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- ====== FLUXO 1: Sobre seu negócio ====== -->
+          <div class="training-section">
+            <div class="training-section-header">
+              <span class="training-section-num">Parte 1</span>
+              <h3 class="training-section-title">Conte sobre seu negócio</h3>
+              <p class="training-section-desc">Essas informações vão direto pro Waz. Ele usa pra responder suas clientes com precisão.</p>
+            </div>
+
+            <div class="training-fields">
+
+              <div class="training-field">
+                <label class="training-label">
+                  Horário de funcionamento
+                  <span class="tag-recommended">recomendado</span>
+                </label>
+                <p class="training-hint">Ex: "Seg a Sáb, 9h às 18h" ou "Terça a Domingo, 10h às 20h"</p>
+                <div class="media-placeholder">
+                  <div class="media-placeholder-inner">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" fill="currentColor"/><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Vídeo: contando pro Waz seu horário</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="training-field">
+                <label class="training-label">
+                  Localização e entrega
+                  <span class="tag-recommended">recomendado</span>
+                </label>
+                <p class="training-hint">Onde fica, se faz entrega, pra quais regiões, valor do frete.</p>
+              </div>
+
+              <div class="training-field">
+                <label class="training-label">Regras do negócio</label>
+                <p class="training-hint">Coisas que o Waz precisa saber pra não responder errado:</p>
+                <ul class="tutorial-list">
+                  <li>"Encomendas precisam de 48h de antecedência"</li>
+                  <li>"Não fazemos bolo sem glúten"</li>
+                  <li>"Pedido mínimo pra entrega: R$ 50"</li>
+                  <li>"Não trabalhamos com fondant"</li>
+                </ul>
+              </div>
+
+              <div class="training-field">
+                <label class="training-label">Formas de pagamento</label>
+                <p class="training-hint">Pix, cartão, dinheiro? Aceita parcelamento? Cobra taxa de cartão?</p>
+              </div>
+
+              <div class="training-field">
+                <label class="training-label">
+                  Tom de voz
+                  <span class="tag-recommended">recomendado</span>
+                </label>
+                <p class="training-hint">Como você quer que o Waz fale com suas clientes?</p>
+                <ul class="tutorial-list">
+                  <li>"Carinhoso e próximo, usa emojis 🎂💕"</li>
+                  <li>"Chama a cliente pelo nome"</li>
+                  <li>"Objetivo mas educado, sem enrolação"</li>
+                  <li>"Usa 'a gente' ao invés de 'nós'"</li>
+                </ul>
+              </div>
+
+              <div class="training-field">
+                <label class="training-label">Mais alguma coisa?</label>
+                <p class="training-hint">Qualquer informação extra que você acha importante o Waz saber. Pode ser por texto ou áudio — do seu jeito.</p>
+              </div>
+
+            </div>
+
+            <div class="training-how">
+              <h4>Como enviar essas informações pro Waz</h4>
+              <p>Você tem 3 opções — escolha a que for mais fácil pra você:</p>
+              <div class="how-options">
+                <div class="how-option">
+                  <span class="how-option-icon">🎤</span>
+                  <div>
+                    <strong>Mande áudios</strong>
+                    <p>Abra a conversa com o Waz e vá falando. Ele entende áudio.</p>
+                  </div>
+                </div>
+                <div class="how-option">
+                  <span class="how-option-icon">⌨️</span>
+                  <div>
+                    <strong>Escreva na conversa</strong>
+                    <p>Digite direto na conversa com o Waz, do mesmo jeito que manda WhatsApp.</p>
+                  </div>
+                </div>
+                <div class="how-option">
+                  <span class="how-option-icon">📄</span>
+                  <div>
+                    <strong>Envie um PDF ou documento</strong>
+                    <p>Se já tem algo escrito, é só mandar o arquivo. O Waz lê e aprende.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="media-placeholder" style="margin-top: 16px;">
+                <div class="media-placeholder-inner">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" fill="currentColor"/><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <span>Vídeo: mandando áudio pro Waz</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== FLUXO 2: Como a IA pode te ajudar ====== -->
+          <div class="training-section" style="margin-top: 40px;">
+            <div class="training-section-header">
+              <span class="training-section-num">Parte 2</span>
+              <h3 class="training-section-title">Como a IA pode te ajudar</h3>
+              <p class="training-section-desc">Essa parte é mais sobre refletir do que preencher. Ajuda os agentes a entenderem suas prioridades.</p>
+            </div>
+
+            <div class="training-fields">
+
+              <div class="training-field highlight">
+                <label class="training-label">O que te toma mais tempo no dia a dia?</label>
+                <p class="training-hint">Pense na sua rotina: atender WhatsApp, postar no Instagram, cobrar clientes, organizar financeiro, responder as mesmas perguntas toda hora...</p>
+                <div class="training-example-box">
+                  <span class="training-example-label">Exemplo de resposta:</span>
+                  <p>"O que mais toma meu tempo é responder WhatsApp. São as mesmas perguntas toda hora — preço, sabores, se faz entrega. E quando tô produzindo, não consigo olhar o celular e perco cliente."</p>
+                </div>
+              </div>
+
+              <div class="training-field highlight">
+                <label class="training-label">Como uma IA poderia te ajudar com isso?</label>
+                <p class="training-hint">Não precisa ser técnico — fale do resultado que quer.</p>
+                <div class="training-example-box">
+                  <span class="training-example-label">Exemplo de resposta:</span>
+                  <p>"Queria que alguém respondesse o WhatsApp por mim com as informações certas, e só me chamasse quando fosse algo que eu preciso resolver pessoalmente."</p>
+                </div>
+              </div>
+
+              <div class="training-field highlight">
+                <label class="training-label">O que você acha que NÃO dá pra delegar?</label>
+                <p class="training-hint">Algumas coisas só você pode fazer. Tá tudo bem — é importante saber os limites.</p>
+                <div class="training-example-box">
+                  <span class="training-example-label">Exemplo de resposta:</span>
+                  <p>"Criar sabores novos, decidir preço de encomendas grandes, e reclamações — quero resolver pessoalmente."</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="callout waz">
+              <span class="ico" aria-hidden="true">💡</span>
+              <span>Essas respostas ajudam os agentes a entenderem o que priorizar. Não existe resposta errada — é só pra gente te ajudar melhor.</span>
+            </div>
+          </div>
+
+          <!-- ====== SEÇÃO SEPARADA: Escalação pra humano ====== -->
+          <div class="training-section" style="margin-top: 40px;">
+            <div class="training-section-header">
+              <span class="training-section-num">Parte 3</span>
+              <h3 class="training-section-title">Quando chamar você</h3>
+              <p class="training-section-desc">Defina quando o Waz deve parar de responder e te notificar. Assim você mantém o controle do que importa.</p>
+            </div>
+
+            <div class="training-fields">
+              <div class="training-field">
+                <label class="training-label">Em quais situações o Waz deve te chamar?</label>
+                <p class="training-hint">Exemplos comuns pra confeitarias:</p>
+                <ul class="tutorial-list">
+                  <li>"Se a cliente pedir desconto"</li>
+                  <li>"Se for encomenda grande (acima de R$ 300)"</li>
+                  <li>"Se for reclamação"</li>
+                  <li>"Se perguntarem algo que não tá no catálogo"</li>
+                  <li>"Se quiserem personalização especial (ex: bolo temático)"</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="callout fin">
+              <span class="ico" aria-hidden="true">💡</span>
+              <span>Você pode ajustar essas regras a qualquer momento — é só mandar uma mensagem pro Waz. Ex: "Waz, a partir de agora pode dar até 10% de desconto sem me perguntar."</span>
+            </div>
+          </div>
+
+          <!-- ====== BOTÃO PRA ABRIR O WIZARD ====== -->
+          <div class="training-cta-block">
+            <div class="training-cta-block-inner">
+              <h4>Pronta pra responder?</h4>
+              <p>O formulário guiado cobre tudo que falamos acima. No final, geramos um PDF prontinho pra enviar pro Waz.</p>
+              <button type="button" id="start-wizard-btn" class="btn-glow">
+                <span class="btn-glow-bg"></span>
+                <span class="btn-glow-content">
+                  Começar treinamento
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
               </button>
+              <p class="training-cta-sub">~10 min · pode responder por texto ou áudio</p>
             </div>
           </div>
 
-          <div class="check-block">
-            <div class="task">
-              <div class="task-row with-phone">
+          <!-- ====== CHECKLIST DE VERIFICAÇÃO ====== -->
+          <div class="verify-checklist">
+            <h4 class="verify-title">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1z" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8l2 2 3.5-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Antes de seguir, confira:
+            </h4>
+            <div class="check-block">
+              <div class="task"><div class="task-row">
+                <input type="checkbox" class="checkbox" id="t-2-1" data-task />
+                <label class="task-text" for="t-2-1">Contei sobre meu negócio (horário, localização, regras)</label>
+              </div></div>
+              <div class="task"><div class="task-row">
+                <input type="checkbox" class="checkbox" id="t-2-2" data-task />
+                <label class="task-text" for="t-2-2">Defini como a IA pode me ajudar no dia a dia</label>
+              </div></div>
+              <div class="task"><div class="task-row">
                 <input type="checkbox" class="checkbox" id="t-2-3" data-task />
-                <div class="task-main">
-                  <label class="task-text" for="t-2-3">Envie o documento pro Waz</label>
-                  <button class="details-toggle" aria-expanded="false" aria-controls="d-2-3"><span>Ver detalhes</span><span class="chev"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                  <div class="details" id="d-2-3">
-                    <div class="details-inner">
-                      <p>Com as respostas, será gerado um <strong>PDF com o perfil do seu negócio</strong>. Abra a conversa com o <strong>Waz</strong> na aba <strong>Assistentes</strong> e envie esse documento. O Waz lê tudo e já aprende sobre sua confeitaria.</p>
-                      <p style="margin-top: 8px;">Você também pode complementar mandando <strong>áudios, textos ou mais PDFs</strong> a qualquer momento. Ex: "Waz, a partir de hoje a gente faz entrega na Zona Norte também."</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-phone-wrap">
-                  <div class="phone" aria-hidden="true">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                      <div class="phone-status"><span>9:41</span><span class="icons"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M1 11h2v2H1zM4 8h2v5H4zM7 5h2v8H7zM10 2h2v11h-2z"/></svg><svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4.5" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1"/><rect x="11" y="6" width="1.5" height="2" rx=".3" fill="currentColor"/></svg></span></div>
-                      <div class="phone-body">
-                        <svg class="placeholder-ic" viewBox="0 0 32 32" fill="none"><rect x="3" y="6" width="26" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 22l7-6 6 4 5-3 8 5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="11" cy="12" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
-                        <div class="ptext">Conversa com o Waz — envio do documento de perfil</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <label class="task-text" for="t-2-3">Enviei o documento pro Waz</label>
+              </div></div>
             </div>
           </div>
 
-          <div class="callout maky">
-            <span class="ico" aria-hidden="true">💡</span>
-            <span>O Waz distribui as informações pra Maky e Fin automaticamente. Você treina um, e os três aprendem.</span>
-          </div>
         </div>
 
         <!-- ETAPA 3 -->
@@ -810,7 +1065,7 @@
     </button>
     <div class="wizard-progress" aria-live="polite">
       <div class="wizard-progress-track"><div class="wizard-progress-fill" id="wizard-progress-fill"></div></div>
-      <span class="wizard-progress-text" id="wizard-progress-text">1 de 19</span>
+      <span class="wizard-progress-text" id="wizard-progress-text">1 de 14</span>
     </div>
     <button class="wizard-skip" type="button" id="wizard-skip">Pular</button>
   </header>

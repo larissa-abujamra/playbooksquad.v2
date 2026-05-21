@@ -371,84 +371,166 @@
 
   // ============ Wizard: treinamento guiado de agentes ============
   const wizardQuestions = [
-    // Seção 1 — Sobre sua empresa
+    // ===== PARTE 1: SOBRE SEU NEGÓCIO =====
     {
-      block: 'Sobre sua empresa',
-      key: 'business_description',
-      q: 'O que sua empresa faz e para quem?',
-      hint: 'Em 2-3 linhas: o que você oferece e quem é seu público.',
-      type: 'textarea',
-      placeholder: 'Ex: Confeitaria artesanal pra quem busca bolos sem corante, com atendimento próximo e personalizado.',
+      block: 'Sobre seu negócio',
+      sectionIntro: 'Vamos começar com o básico. Essas informações ajudam o Waz a responder suas clientes com precisão.',
+      key: 'horario',
+      pdfLabel: 'Horário',
+      q: 'Qual o horário de funcionamento do seu negócio?',
+      hint: 'Ex: "Segunda a sábado, 9h às 18h" ou "Todos os dias, 10h às 22h"',
+      type: 'text',
+      placeholder: 'Seg a Sáb, 9h às 18h',
+      recommended: true,
     },
     {
-      block: 'Sobre sua empresa',
-      key: 'business_rules',
-      q: 'Quais são as regras do seu negócio que o assistente precisa saber?',
-      hint: 'Pense em: prazo de entrega, formas de pagamento, política de troca…',
+      block: 'Sobre seu negócio',
+      key: 'localizacao',
+      pdfLabel: 'Localização e entrega',
+      q: 'Onde fica seu negócio? Você faz entrega?',
+      hint: 'Endereço, bairro/região, se faz entrega e pra onde, valor do frete.',
       type: 'textarea',
-      placeholder: 'Ex: Encomendas com 48h de antecedência. Aceitamos Pix e cartão. Não fazemos troca, mas refazemos se houver problema.',
+      placeholder: 'Rua dos Doces, 42 — Vila Mariana, SP. Entrego na Zona Sul, frete R$ 10.',
+      recommended: true,
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'regras',
+      pdfLabel: 'Regras',
+      q: 'Quais são as regras do seu negócio que os clientes precisam saber?',
+      hint: 'Prazos de encomenda, restrições, pedido mínimo, o que você NÃO faz...',
+      type: 'textarea',
+      placeholder: 'Encomendas com 48h de antecedência. Não faço sem glúten. Pedido mínimo pra entrega: R$ 50.',
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'pagamento',
+      pdfLabel: 'Pagamento',
+      q: 'Quais formas de pagamento você aceita?',
+      hint: 'Pix, cartão de crédito/débito, dinheiro, parcelamento...',
+      type: 'text',
+      placeholder: 'Pix, cartão (até 3x sem juros) e dinheiro',
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'tom_voz',
+      pdfLabel: 'Tom de voz',
+      q: 'Como você quer que o Waz fale com suas clientes?',
+      hint: 'Descreva o tom de voz ideal. O Waz vai copiar esse estilo em todas as conversas.',
+      type: 'textarea',
+      placeholder: 'Carinhoso e próximo, usa emojis de coração e bolo 🎂💕, chama a cliente pelo nome, responde com "a gente" e não "nós".',
+      recommended: true,
+      examples: [
+        'Carinhoso e próximo, com emojis',
+        'Profissional mas simpático',
+        'Objetivo e direto, sem enrolação',
+      ],
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'produto_top',
+      pdfLabel: 'Produto mais vendido',
+      q: 'Me conta sobre seu produto ou serviço mais vendido.',
+      hint: 'Nome, preço, o que tem de especial, por que as clientes amam.',
+      type: 'textarea',
+      placeholder: 'Bolo Red Velvet (R$ 95) — é o mais pedido, a cobertura de cream cheese é feita na hora. As clientes pedem pra aniversário e casamento.',
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'perguntas_frequentes',
+      pdfLabel: 'Perguntas frequentes',
+      q: 'Quais são as perguntas que suas clientes mais fazem?',
+      hint: 'Pense nas mensagens que você recebe toda semana no WhatsApp. Quais se repetem?',
+      type: 'textarea',
+      placeholder: '"Qual o preço do bolo?"\n"Vocês fazem entrega?"\n"Tem sem lactose?"\n"Qual o prazo pra encomenda?"',
+      recommended: true,
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'extra_negocio',
+      pdfLabel: 'Extra',
+      q: 'Tem mais alguma coisa que você acha importante o Waz saber?',
+      hint: 'Qualquer detalhe que não coube nas perguntas anteriores. Se não tiver nada, pode pular.',
+      type: 'textarea',
+      placeholder: 'A gente fecha em feriados. Em dezembro o prazo de encomenda sobe pra 5 dias.',
     },
 
-    // Seção 2 — Tom de voz
+    // ===== PARTE 2: COMO A IA PODE TE AJUDAR =====
     {
-      block: 'Tom de voz',
-      key: 'attendance_style',
-      q: 'Como você quer que seu assistente atenda?',
-      hint: 'Escolha o que mais combina com a marca.',
-      type: 'single-choice',
-      options: [
-        { value: 'consultivo',  label: 'Consultivo',  desc: 'Ouve, entende e orienta antes de oferecer.' },
-        { value: 'comercial',   label: 'Comercial',   desc: 'Focado em converter, direto e persuasivo.' },
-        { value: 'acolhedor',   label: 'Acolhedor',   desc: 'Próximo, humano, cria vínculo antes de vender.' },
-        { value: 'informativo', label: 'Informativo', desc: 'Objetivo, responde o que foi perguntado sem rodeios.' },
-      ],
-    },
-    {
-      block: 'Tom de voz',
-      key: 'emoji_usage',
-      q: 'Uso de emoji',
-      hint: 'Como o assistente deve se comportar com emojis?',
-      type: 'choice-with-followup',
-      options: [
-        { value: 'sempre',   label: 'Sempre',         desc: 'Faz parte da identidade.', followup: true },
-        { value: 'moderado', label: 'Com moderação', desc: 'Só quando fizer sentido.', followup: true },
-        { value: 'nunca',    label: 'Nunca',          desc: 'Sem emojis na comunicação.' },
-      ],
-      followupKey: 'emoji_examples',
-      followupHint: 'Quais emojis combinam com a marca?',
-      followupPlaceholder: 'Ex: 🎂 💕 ✨',
-    },
-    {
-      block: 'Tom de voz',
-      key: 'forbidden_words',
-      q: 'Tem alguma palavra, expressão ou abordagem que seu assistente não deve usar?',
-      hint: 'Pode dar exemplos.',
+      block: 'Como a IA pode te ajudar',
+      sectionIntro: 'Agora vamos entender sua rotina. Isso ajuda os agentes a priorizarem o que mais importa pra você.',
+      key: 'gasta_tempo',
+      pdfLabel: 'Maior gasto de tempo',
+      q: 'O que te toma mais tempo no dia a dia?',
+      hint: 'Responder WhatsApp, postar no Instagram, cobrar clientes, organizar financeiro, responder as mesmas perguntas...',
       type: 'textarea',
-      placeholder: 'Ex: Nunca dizer "fofa". Evitar "barato" — prefiro "acessível".',
+      placeholder: 'Responder WhatsApp — são as mesmas perguntas toda hora. Quando tô produzindo não consigo olhar o celular e perco cliente.',
+      recommended: true,
+    },
+    {
+      block: 'Como a IA pode te ajudar',
+      key: 'ia_ajuda',
+      pdfLabel: 'Como a IA ajuda',
+      q: 'Como você imagina que a IA poderia te ajudar?',
+      hint: 'Não precisa ser técnico. Descreva o resultado que quer, como se tivesse contratando um assistente.',
+      type: 'textarea',
+      placeholder: 'Queria que respondesse o WhatsApp com as informações certas e só me chamasse quando fosse algo que eu preciso resolver pessoalmente.',
+    },
+    {
+      block: 'Como a IA pode te ajudar',
+      key: 'nao_delegar',
+      pdfLabel: 'Não delegar',
+      q: 'Quais tarefas você acha que NÃO dá pra delegar pra IA?',
+      hint: 'Algumas coisas só você pode fazer — e tá tudo bem. Saber os limites ajuda os agentes a agirem certo.',
+      type: 'textarea',
+      placeholder: 'Criar sabores novos, decidir preço de encomendas grandes, e reclamações — quero resolver pessoalmente.',
     },
 
-    // Seção 3 — Situações pessoais
+    // ===== PARTE 3: QUANDO CHAMAR VOCÊ =====
     {
-      block: 'Situações pessoais',
-      intro: 'Seu assistente vai atender a maioria das conversas. Mas algumas situações são importantes demais pra ficar no automático.',
-      key: 'escalation_situations',
-      q: 'Selecione abaixo o que você quer assumir.',
-      hint: 'Marque todas que se aplicam.',
-      type: 'multi-choice',
-      options: [
-        { value: 'negociacao',  label: 'Negociação de preço ou condições especiais' },
-        { value: 'eventos',     label: 'Eventos corporativos ou pedidos em grande volume' },
-        { value: 'reclamacoes', label: 'Clientes insatisfeitos ou reclamações' },
-        { value: 'contratos',   label: 'Contratos ou parcerias' },
-        { value: 'vip',         label: 'Clientes VIP ou recorrentes' },
+      block: 'Quando chamar você',
+      sectionIntro: 'Por último, defina quando o Waz deve parar e te notificar. Assim você mantém o controle.',
+      key: 'escalacao_situacoes',
+      pdfLabel: 'Situações',
+      q: 'Em quais situações o Waz deve te chamar ao invés de responder sozinho?',
+      hint: 'Pense nos momentos que precisam da sua decisão pessoal.',
+      type: 'textarea',
+      placeholder: 'Se pedirem desconto, se for encomenda acima de R$ 300, se for reclamação, se quiserem personalização especial.',
+      recommended: true,
+      examples: [
+        'Cliente pede desconto',
+        'Encomenda grande (acima de R$ X)',
+        'Reclamação',
+        'Pergunta que não tá no catálogo',
+        'Personalização especial',
       ],
-      otherKey: 'escalation_other',
-      otherLabel: 'Outros',
-      otherPlaceholder: 'Descreva quais outras situações.',
+    },
+    {
+      block: 'Quando chamar você',
+      key: 'limite_desconto',
+      pdfLabel: 'Limite de desconto',
+      q: 'Tem algum limite de desconto ou promoção que o Waz pode oferecer sozinho?',
+      hint: 'Se não quiser que ele dê desconto nenhum, diga "nenhum desconto sem me consultar."',
+      type: 'text',
+      placeholder: 'Pode dar até 10% pra pedidos acima de R$ 200. Fora isso, me consulta.',
+    },
+    {
+      block: 'Quando chamar você',
+      key: 'extra_agentes',
+      pdfLabel: 'Observações extras',
+      q: 'Última pergunta: tem algo mais que queira dizer pros seus agentes?',
+      hint: 'Campo livre. Qualquer coisa que não foi coberta. Se não tiver, pode finalizar.',
+      type: 'textarea',
+      placeholder: '',
     },
   ];
 
-  const WIZARD_STORAGE_KEY = 'squad-wizard-answers-v2';
+  // Ordem das partes (pra "Parte X de N" nas telas de transição)
+  const wizardSections = wizardQuestions
+    .filter(q => q.sectionIntro)
+    .map(q => q.block);
+
+  const WIZARD_STORAGE_KEY = 'squad-wizard-answers-v3';
   const wizard = document.getElementById('wizard');
   const wizardCard = document.getElementById('wizard-card');
   const wizardFill = document.getElementById('wizard-progress-fill');
@@ -522,10 +604,19 @@
     nextBtn.disabled = !hasAnswer(q);
   }
 
-  function renderQuestion(index, direction) {
+  function renderQuestion(index, direction, opts) {
     direction = direction || 'forward';
+    opts = opts || {};
     const leavingClass = direction === 'back' ? 'is-leaving-back' : 'is-leaving-forward';
     const enteringClass = direction === 'back' ? 'is-entering-back' : 'is-entering-forward';
+
+    // Tela de transição entre partes: ao chegar (indo pra frente) na 1ª pergunta
+    // de uma parte, mostra a intro da seção antes da pergunta em si.
+    const sectionStart = wizardQuestions[index];
+    if (direction === 'forward' && sectionStart && sectionStart.sectionIntro && !opts.skipIntro) {
+      renderSectionIntro(index, direction);
+      return;
+    }
 
     const buildAndShow = () => {
       const q = wizardQuestions[index];
@@ -543,6 +634,22 @@
         bodyHtml = q.type === 'textarea'
           ? '<textarea class="wizard-textarea" id="wizard-current-input" placeholder="' + ph + '" rows="2">' + value + '</textarea>'
           : '<input type="text" class="wizard-input" id="wizard-current-input" placeholder="' + ph + '" value="' + value + '" />';
+
+        // Chips de sugestão rápida (se a pergunta tiver examples)
+        if (Array.isArray(q.examples) && q.examples.length) {
+          const splitRe = q.type === 'textarea' ? /\n+/ : /,\s*/;
+          const savedTokens = (wizardState.answers[q.key] || '')
+            .split(splitRe).map(s => s.trim()).filter(Boolean);
+          bodyHtml += '<div class="wizard-examples">' +
+            '<span class="wizard-examples-label">Sugestões rápidas:</span>' +
+            '<div class="wizard-chips">';
+          q.examples.forEach(ex => {
+            const isSel = savedTokens.includes(ex);
+            bodyHtml += '<button type="button" class="wizard-chip' + (isSel ? ' is-selected' : '') + '">' +
+              escapeHtml(ex) + '</button>';
+          });
+          bodyHtml += '</div></div>';
+        }
       } else if (isSingle || isFollowup) {
         const selectedValue = wizardState.answers[q.key] || '';
         bodyHtml = '<div class="wizard-options" role="radiogroup">';
@@ -592,7 +699,9 @@
 
       wizardCard.innerHTML =
         '<div class="wizard-eyebrow">' + escapeHtml(q.block) + '</div>' +
-        '<h1 class="wizard-q" id="wizard-question-text">' + escapeHtml(q.q) + '</h1>' +
+        '<h1 class="wizard-q" id="wizard-question-text">' + escapeHtml(q.q) +
+          (q.recommended ? ' <span class="tag-recommended">recomendado</span>' : '') +
+        '</h1>' +
         (q.hint ? '<p class="wizard-hint">' + escapeHtml(q.hint) + '</p>' : '') +
         introHtml +
         bodyHtml +
@@ -637,6 +746,28 @@
           input.style.height = Math.min(input.scrollHeight, 180) + 'px';
         }
         setTimeout(() => input.focus(), 50);
+      }
+
+      // Chips de sugestão: adicionam/removem o texto no campo, preservando o que foi digitado
+      if (input && Array.isArray(q.examples) && q.examples.length) {
+        const sep = q.type === 'textarea' ? '\n' : ', ';
+        const splitRe = q.type === 'textarea' ? /\n+/ : /,\s*/;
+        wizardCard.querySelectorAll('.wizard-chip').forEach(chip => {
+          chip.addEventListener('click', () => {
+            chip.classList.toggle('is-selected');
+            const selectedChips = Array.from(wizardCard.querySelectorAll('.wizard-chip.is-selected'))
+              .map(c => c.textContent);
+            // Mantém o texto livre (tokens que não são chips) e reanexa os chips selecionados
+            const tokens = input.value.split(splitRe).map(s => s.trim()).filter(Boolean);
+            const freeTokens = tokens.filter(t => !q.examples.includes(t));
+            input.value = freeTokens.concat(selectedChips).join(sep);
+            input.dispatchEvent(new Event('input'));
+            if (q.type === 'textarea') {
+              input.style.height = 'auto';
+              input.style.height = Math.min(input.scrollHeight, 180) + 'px';
+            }
+          });
+        });
       }
 
       // Option handlers (single/multi/followup)
@@ -729,6 +860,48 @@
       wizardSave();
       updateWizardProgress();
       updateNextButton();
+    };
+
+    if (wizardCard.children.length) {
+      wizardCard.classList.add(leavingClass);
+      setTimeout(buildAndShow, 220);
+    } else {
+      buildAndShow();
+    }
+  }
+
+  // Tela de transição entre as partes do wizard
+  function renderSectionIntro(index, direction) {
+    direction = direction || 'forward';
+    const leavingClass = direction === 'back' ? 'is-leaving-back' : 'is-leaving-forward';
+    const enteringClass = direction === 'back' ? 'is-entering-back' : 'is-entering-forward';
+
+    const buildAndShow = () => {
+      const q = wizardQuestions[index];
+      const partNum = wizardSections.indexOf(q.block) + 1;
+      const totalParts = wizardSections.length;
+
+      wizardCard.innerHTML =
+        '<div class="wizard-section-intro">' +
+          '<span class="wizard-section-label">Parte ' + partNum + ' de ' + totalParts + '</span>' +
+          '<h2 class="wizard-section-title" id="wizard-question-text">' + escapeHtml(q.block) + '</h2>' +
+          '<p class="wizard-section-desc">' + escapeHtml(q.sectionIntro) + '</p>' +
+          '<button class="wizard-section-continue" type="button" id="wizard-section-continue">Continuar →</button>' +
+        '</div>';
+
+      wizardCard.classList.remove('is-leaving-forward', 'is-leaving-back');
+      wizardCard.classList.add(enteringClass);
+      setTimeout(() => wizardCard.classList.remove(enteringClass), 360);
+
+      const continueBtn = document.getElementById('wizard-section-continue');
+      if (continueBtn) {
+        continueBtn.addEventListener('click', () => renderQuestion(index, 'forward', { skipIntro: true }));
+        setTimeout(() => continueBtn.focus(), 50);
+      }
+
+      wizardState.currentIndex = index;
+      wizardSave();
+      updateWizardProgress();
     };
 
     if (wizardCard.children.length) {
@@ -881,16 +1054,30 @@
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
     doc.setTextColor(17, 24, 39);
-    doc.text('Treinamento de agentes', margin, y);
-    y += 26;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(12);
-    doc.setTextColor(107, 114, 128);
-    doc.text('Squad · perfil do negócio pra alimentar Waz, Maky e Fin', margin, y);
+    doc.text('Perfil do Negócio', margin, y);
     y += 24;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11);
+    doc.setTextColor(107, 114, 128);
+    doc.text('Gerado pelo Playbook Squad', margin, y);
+    y += 22;
     doc.setDrawColor(229, 231, 235);
     doc.line(margin, y, pageWidth - margin, y);
-    y += 24;
+    y += 26;
+
+    // Mini-prompt pro Waz (instrução no topo do documento)
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(17, 24, 39);
+    const promptLines = doc.splitTextToSize(
+      'Waz, preciso que siga essas diretrizes para atender os clientes do meu negócio:',
+      maxWidth
+    );
+    promptLines.forEach(line => {
+      if (y > pageHeight - margin) { doc.addPage(); y = margin; }
+      doc.text(line, margin, y); y += 16;
+    });
+    y += 14;
 
     const blocks = [];
     const blockMap = {};
@@ -902,58 +1089,39 @@
       blockMap[q.block].rows.push(q);
     });
 
-    blocks.forEach((block, bIdx) => {
+    blocks.forEach(block => {
+      // Só inclui no PDF as perguntas respondidas; pula a parte inteira se vazia
+      const filledRows = block.rows.filter(q => !!formatAnswer(q));
+      if (!filledRows.length) return;
+
       if (y > pageHeight - 120) { doc.addPage(); y = margin; }
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(13);
       doc.setTextColor(17, 24, 39);
-      doc.text(String(bIdx + 1).padStart(2, '0') + '  ·  ' + block.name.toUpperCase(), margin, y);
-      y += 18;
+      doc.text(block.name.toUpperCase(), margin, y);
+      y += 16;
       doc.setDrawColor(17, 24, 39);
       doc.setLineWidth(1.4);
       doc.line(margin, y - 4, margin + 32, y - 4);
       doc.setLineWidth(0.5);
-      y += 14;
+      y += 12;
 
-      // Intro do bloco (se houver), aparece uma vez
-      const firstWithIntro = block.rows.find(r => r.intro);
-      if (firstWithIntro && firstWithIntro.intro) {
-        doc.setFont('helvetica', 'italic');
-        doc.setFontSize(10.5);
-        doc.setTextColor(107, 114, 128);
-        const introLines = doc.splitTextToSize(firstWithIntro.intro, maxWidth);
-        introLines.forEach(line => {
-          if (y > pageHeight - margin) { doc.addPage(); y = margin; }
-          doc.text(line, margin, y); y += 13;
-        });
-        y += 8;
-      }
-
-      block.rows.forEach(q => {
-        const formatted = formatAnswer(q);
-        const isEmpty = !formatted;
-        const answer = formatted || '(não respondida)';
-
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(10.5);
-        doc.setTextColor(107, 114, 128);
-        const qLines = doc.splitTextToSize(q.q, maxWidth);
-        if (y + qLines.length * 13 > pageHeight - margin) { doc.addPage(); y = margin; }
-        qLines.forEach(line => { doc.text(line, margin, y); y += 13; });
-        y += 4;
-
-        doc.setFont('helvetica', isEmpty ? 'italic' : 'normal');
+      filledRows.forEach(q => {
+        const label = q.pdfLabel || q.q;
+        const answer = formatAnswer(q).replace(/\s*\n\s*/g, ' / ');
+        const bullet = '•  ' + label + ': ' + answer;
+        doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
-        doc.setTextColor(isEmpty ? 156 : 17, isEmpty ? 163 : 24, isEmpty ? 175 : 39);
-        const aLines = doc.splitTextToSize(answer, maxWidth);
-        aLines.forEach(line => {
+        doc.setTextColor(17, 24, 39);
+        const lines = doc.splitTextToSize(bullet, maxWidth - 10);
+        lines.forEach((line, i) => {
           if (y > pageHeight - margin) { doc.addPage(); y = margin; }
-          doc.text(line, margin, y);
+          doc.text(line, margin + (i === 0 ? 0 : 12), y);
           y += 15;
         });
-        y += 14;
+        y += 6;
       });
-      y += 8;
+      y += 14;
     });
 
     const totalPages = doc.internal.getNumberOfPages();
@@ -967,7 +1135,7 @@
       doc.text(i + '/' + totalPages, pageWidth - margin, pageHeight - 24, { align: 'right' });
     }
 
-    doc.save('treinamento-agentes-squad.pdf');
+    doc.save('perfil-negocio-squad.pdf');
 
     const t23 = document.getElementById('t-2-3');
     if (t23 && !t23.checked) {
@@ -1077,3 +1245,24 @@
       }
     });
   }
+
+  /* ---- Path Selector (Catálogo: manual vs Waz) ---- */
+  document.querySelectorAll('.path-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const path = tab.dataset.path;
+
+      // Toggle tabs
+      tab.closest('.path-selector').querySelectorAll('.path-tab').forEach(t => {
+        t.classList.remove('is-active');
+      });
+      tab.classList.add('is-active');
+
+      // Toggle content
+      const stage = tab.closest('.stage');
+      stage.querySelectorAll('.path-content').forEach(c => {
+        c.classList.remove('is-visible');
+      });
+      const target = stage.querySelector(`#path-${path}`);
+      if (target) target.classList.add('is-visible');
+    });
+  });
