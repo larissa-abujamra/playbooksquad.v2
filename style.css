@@ -924,7 +924,7 @@
     transition: all 0.3s ease;
   }
   .ov-timeline-step.is-done .ov-timeline-dot {
-    background: linear-gradient(135deg, #E91E8C, #8B5CF6, #2563EB, #2DB67D);
+    background: var(--waz);
     border-color: transparent;
   }
   .ov-timeline-step.is-current .ov-timeline-dot {
@@ -949,7 +949,8 @@
     height: 2px;
     background: linear-gradient(90deg, #E91E8C, #8B5CF6, #2563EB, #2DB67D);
     border-radius: 999px;
-    margin-top: 6px; /* alinhar com o centro do dot */
+    /* margens negativas estendem a linha em direção aos dots (menos espaço em branco) */
+    margin: 6px -28px 0;
     min-width: 40px;
   }
   /* A linha após o passo atual (entre "Playbook" e "Call") ainda não foi percorrida */
@@ -1036,8 +1037,7 @@
       width: 2px;
       height: 24px;
       min-width: unset;
-      margin-top: 0;
-      margin-left: 6px;
+      margin: 0 0 0 6px;
     }
     .ov-timeline-label {
       align-items: flex-start;
