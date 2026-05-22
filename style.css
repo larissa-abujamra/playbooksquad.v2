@@ -3115,6 +3115,76 @@
   display: inline-block;
 }
 
+/* ---- Training Overview (ponte motivacional pro CTA) ---- */
+.training-overview {
+  margin-bottom: 24px;
+}
+
+.training-overview-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  max-width: 600px;
+}
+
+.training-overview-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 20px;
+  max-width: 600px;
+}
+
+.training-overview-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.training-overview-steps li {
+  position: relative;
+  padding-left: 38px;
+  min-height: 26px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  counter-increment: step;
+}
+
+.training-overview-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .training-overview-title {
+    font-size: 19px;
+  }
+}
+
 /* ---- Training Section ---- */
 .training-section {
   padding-top: 8px;
