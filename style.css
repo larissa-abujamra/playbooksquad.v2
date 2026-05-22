@@ -3043,6 +3043,13 @@
   vertical-align: middle;
 }
 
+/* Badge "recomendado" no canto direito da opção do wizard */
+.wizard-option-rec {
+  margin-left: auto;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
 /* ---- Media Placeholder (GIF/vídeo) ---- */
 .media-placeholder {
   margin-top: 14px;

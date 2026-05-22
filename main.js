@@ -415,16 +415,70 @@
       block: 'Sobre seu negócio',
       key: 'tom_voz',
       pdfLabel: 'Tom de voz',
-      q: 'Como você quer que o Waz fale com suas clientes?',
-      hint: 'Descreva o tom de voz ideal. O Waz vai copiar esse estilo em todas as conversas.',
-      type: 'textarea',
-      placeholder: 'Carinhoso e próximo, usa emojis de coração e bolo 🎂💕, chama a cliente pelo nome, responde com "a gente" e não "nós".',
-      recommended: true,
-      examples: [
-        'Carinhoso e próximo, com emojis',
-        'Profissional mas simpático',
-        'Objetivo e direto, sem enrolação',
+      q: 'Qual tom de voz combina mais com seu negócio?',
+      hint: 'Escolha o estilo que mais parece com a forma que você fala com suas clientes.',
+      type: 'single-choice',
+      options: [
+        {
+          value: 'carinhoso',
+          label: '🤗 Carinhoso e próximo',
+          desc: 'Chama pelo nome, pode usar termos como "querida", "flor", tom de conversa entre amigas.',
+        },
+        {
+          value: 'simpatico',
+          label: '😁 Simpático e profissional',
+          desc: 'Educado e atencioso, mas sem intimidade excessiva. O mais escolhido por confeitarias.',
+          recommended: true,
+        },
+        {
+          value: 'direto',
+          label: '📋 Direto e objetivo',
+          desc: 'Responde rápido, sem enrolação. Informação clara e prática.',
+        },
+        {
+          value: 'descolado',
+          label: '😎 Descolado e informal',
+          desc: 'Usa gírias leves, tom jovem, linguagem de rede social.',
+        },
+        {
+          value: 'elegante',
+          label: '✨ Elegante e formal',
+          desc: 'Linguagem cuidada, tom premium. Pra marcas mais exclusivas.',
+        },
       ],
+    },
+    {
+      block: 'Sobre seu negócio',
+      key: 'uso_emojis',
+      pdfLabel: 'Uso de emojis',
+      q: 'Com que frequência o Waz deve usar emojis?',
+      hint: 'Emojis deixam a conversa mais leve, mas nem todo negócio combina.',
+      type: 'choice-with-followup',
+      recommended: false,
+      options: [
+        {
+          value: 'sempre',
+          label: 'Sempre',
+          desc: 'Em quase toda mensagem.',
+          followup: true,
+        },
+        {
+          value: 'as_vezes',
+          label: 'Às vezes',
+          desc: 'Só pra dar um tom simpático, sem exagerar.',
+          followup: true,
+          recommended: true,
+        },
+        {
+          value: 'nunca',
+          label: 'Nunca',
+          desc: 'Prefiro texto limpo, sem emojis.',
+          followup: false,
+        },
+      ],
+      followupKey: 'emojis_preferidos',
+      followupHint: 'Quais emojis combinam com seu negócio? Ex: 🎂💕🍫😊✨',
+      followupPlaceholder: '🎂💕😊',
     },
     {
       block: 'Sobre seu negócio',
@@ -673,6 +727,7 @@
               '<strong>' + escapeHtml(opt.label) + '</strong>' +
               (opt.desc ? '<span>' + escapeHtml(opt.desc) + '</span>' : '') +
             '</span>' +
+            (opt.recommended ? '<span class="tag-recommended wizard-option-rec">recomendado</span>' : '') +
           '</button>';
         });
         if (isFollowup) {
