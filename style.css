@@ -1770,14 +1770,17 @@
   .wizard-stage {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: clamp(24px, 6vh, 56px) clamp(20px, 5vw, 56px);
     overflow-y: auto;
   }
   .wizard-card {
     width: 100%;
     max-width: 620px;
+    /* margin auto centraliza quando cabe, mas mantém o topo acessível
+       (com scroll) quando o conteúdo é mais alto que a tela */
+    margin: auto 0;
     transition: opacity .25s ease, transform .25s ease;
   }
   .wizard-card.is-leaving-forward { opacity: 0; transform: translateY(-10px); }
@@ -1951,6 +1954,23 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 8px;
+  }
+  /* Multi-choice com muitas opções: 2 colunas, mais enxuto */
+  .wizard-options:has(.wizard-option.is-multi) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .wizard-options:has(.wizard-option.is-multi) .wizard-option {
+    padding: 11px 14px;
+    gap: 10px;
+  }
+  /* O campo "Outras" (textarea) ocupa a linha inteira */
+  .wizard-options:has(.wizard-option.is-multi) .wizard-other {
+    grid-column: 1 / -1;
+  }
+  @media (max-width: 560px) {
+    .wizard-options:has(.wizard-option.is-multi) { grid-template-columns: 1fr; }
   }
   .wizard-option {
     appearance: none;
@@ -3515,8 +3535,9 @@
 
 /* Label discreto acima do botão gigante */
 .training-cta-label {
-  font-size: 14px;
-  color: var(--ink-3);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
   text-align: center;
   margin-bottom: 12px;
 }
