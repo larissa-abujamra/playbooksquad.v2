@@ -3471,38 +3471,62 @@
   margin-bottom: 28px;
 }
 
-.training-cta-block-inner {
+/* Label discreto acima do botão gigante */
+.training-cta-label {
+  font-size: 14px;
+  color: var(--ink-3);
   text-align: center;
-  padding: 32px 28px;
-  border-radius: 16px;
-  background: var(--ink);
-  color: white;
+  margin-bottom: 12px;
 }
 
-.training-cta-block-inner h4 {
+/* Botão XL — o bloco escuro É o botão (ocupa a largura toda) */
+.btn-glow-xl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 32px;
+  border-radius: 16px;
+  background: #0A0A0A;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  margin-top: 0;
+}
+
+.btn-glow-xl:hover {
+  transform: translateY(-2px);
+}
+
+/* glow externo acompanha o raio maior do botão xl */
+.btn-glow-xl::after {
+  border-radius: 18px;
+}
+
+.btn-glow-xl .btn-glow-content {
   font-size: 20px;
   font-weight: 700;
-  margin: 0 0 8px;
-  color: white;
+  gap: 10px;
 }
 
-.training-cta-block-inner > p {
-  font-size: 14px;
-  color: rgba(255,255,255,0.6);
-  margin: 0 0 20px;
-  line-height: 1.5;
+.btn-glow-xl .btn-glow-content svg {
+  width: 18px;
+  height: 18px;
 }
 
-.training-cta-block-inner .btn-glow {
-  margin: 0 auto;
-}
-
-.training-cta-sub {
+.btn-glow-xl .btn-glow-sub {
+  display: block;
   font-size: 12px;
   font-family: 'DM Mono', monospace;
   color: rgba(255,255,255,0.35);
-  margin-top: 12px;
+  margin-top: 10px;
   letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---- Responsive ---- */
@@ -3534,7 +3558,10 @@
   .training-how {
     padding: 18px 16px;
   }
-  .training-cta-block-inner {
-    padding: 24px 20px;
+  .btn-glow-xl {
+    padding: 32px 20px;
+  }
+  .btn-glow-xl .btn-glow-content {
+    font-size: 17px;
   }
 }
