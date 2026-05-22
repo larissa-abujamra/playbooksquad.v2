@@ -84,7 +84,7 @@
   if (tracker) {
     const stages = [
       { id: 1, tasks: ['t-1-1','t-1-2','t-1-3'] },
-      { id: 2, tasks: ['t-2-3'] },
+      { id: 2, tasks: ['t-2-1','t-2-2','t-2-3'] },
       { id: 3, tasks: ['t-3-1','t-3-2','t-3-4'] },
       { id: 4, tasks: ['t-4-1','t-4-2','t-4-3'] },
     ];
@@ -226,7 +226,7 @@
   if (subNavEls.length) {
     const navStages = [
       { id: 1, tasks: ['t-1-1','t-1-2','t-1-3'] },
-      { id: 2, tasks: ['t-2-3'] },
+      { id: 2, tasks: ['t-2-1','t-2-2','t-2-3'] },
       { id: 3, tasks: ['t-3-1','t-3-2','t-3-4'] },
       { id: 4, tasks: ['t-4-1','t-4-2','t-4-3'] },
     ];
