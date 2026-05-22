@@ -1266,3 +1266,66 @@
       if (target) target.classList.add('is-visible');
     });
   });
+
+  // ============ Flow Explorer (training section spotlight) ============
+  const flowExplorer = document.querySelector('.flow-explorer');
+  if (flowExplorer) {
+    const flowItems = Array.from(flowExplorer.querySelectorAll('.flow-item'));
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let flowActiveIndex = 0;
+    let flowInView = false;
+
+    const setFlowActive = (idx) => {
+      flowActiveIndex = idx;
+      flowItems.forEach((it, i) => {
+        const active = i === idx;
+        it.classList.toggle('is-active', active);
+        it.classList.remove('is-running');
+        it.setAttribute('aria-selected', String(active));
+      });
+      if (flowInView && !reducedMotion) {
+        void flowItems[idx].offsetWidth; // reflow to restart bar animation
+        flowItems[idx].classList.add('is-running');
+      }
+    };
+
+    flowItems.forEach((item, idx) => {
+      const fill = item.querySelector('.flow-bar-fill');
+      if (fill) {
+        fill.addEventListener('animationend', (e) => {
+          // Só avança quando a barra de preenchimento completa (não no loop do gradiente)
+          if (e.animationName === 'flow-fill') {
+            if (idx === flowActiveIndex && flowInView && !reducedMotion) {
+              setFlowActive((flowActiveIndex + 1) % flowItems.length);
+            }
+          }
+        });
+      }
+      const activate = () => {
+        if (idx !== flowActiveIndex) setFlowActive(idx);
+        else if (flowInView && !reducedMotion) {
+          item.classList.remove('is-running');
+          void item.offsetWidth;
+          item.classList.add('is-running');
+        }
+      };
+      item.addEventListener('mouseenter', activate);
+      item.addEventListener('click', activate);
+      item.addEventListener('focus', activate);
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+      });
+    });
+
+    const flowIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        flowInView = e.isIntersecting;
+        if (flowInView) {
+          setFlowActive(flowActiveIndex);
+        } else {
+          flowItems.forEach(i => i.classList.remove('is-running'));
+        }
+      });
+    }, { threshold: 0.2 });
+    flowIO.observe(flowExplorer);
+  }

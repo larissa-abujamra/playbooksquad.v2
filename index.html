@@ -557,24 +557,56 @@
 
           <p class="stage-intro">É como contratar funcionários novos — quanto mais você ensinar, melhores os resultados e menos tempo vai perder corrigindo. Essa etapa tem dois momentos:</p>
 
-          <!-- Dois fluxos visuais -->
-          <div class="flow-cards">
+          <!-- Dois fluxos visuais (spotlight rotativo) -->
+          <div class="flow-explorer" role="tablist" aria-label="Partes do treinamento">
 
-            <!-- Fluxo 1 -->
-            <div class="flow-card">
-              <div class="flow-card-number">1</div>
-              <div class="flow-card-content">
-                <h4>Conte sobre seu negócio</h4>
-                <p>Informações que o Waz precisa pra responder suas clientes: horário, localização, regras, produtos.</p>
+            <!-- Card 1: Sobre seu negócio -->
+            <div class="flow-item is-active is-running" role="tab" aria-selected="true" tabindex="0">
+              <div class="flow-bar">
+                <div class="flow-bar-fill"></div>
+              </div>
+              <div class="flow-item-content">
+                <div class="flow-item-header">
+                  <div class="flow-item-number">1</div>
+                  <div>
+                    <div class="flow-item-title">Conte sobre seu negócio</div>
+                  </div>
+                </div>
+                <div class="flow-item-details">
+                  <p class="flow-item-desc">Informações que o Waz precisa pra responder suas clientes: horário, localização, regras, formas de pagamento e tom de voz.</p>
+                  <div class="flow-item-tags">
+                    <span>Horário</span><span>·</span>
+                    <span>Localização</span><span>·</span>
+                    <span>Regras</span><span>·</span>
+                    <span>Tom de voz</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Fluxo 2 -->
-            <div class="flow-card">
-              <div class="flow-card-number">2</div>
-              <div class="flow-card-content">
-                <h4>Diga como a IA pode te ajudar</h4>
-                <p>O que te toma mais tempo no dia a dia? O que você quer que os agentes façam — e o que prefere continuar fazendo.</p>
+            <!-- Linha conectora horizontal -->
+            <div class="flow-connector"></div>
+
+            <!-- Card 2: Como a IA pode te ajudar -->
+            <div class="flow-item" role="tab" aria-selected="false" tabindex="0">
+              <div class="flow-bar">
+                <div class="flow-bar-fill"></div>
+              </div>
+              <div class="flow-item-content">
+                <div class="flow-item-header">
+                  <div class="flow-item-number">2</div>
+                  <div>
+                    <div class="flow-item-title">Diga como a IA pode te ajudar</div>
+                  </div>
+                </div>
+                <div class="flow-item-details">
+                  <p class="flow-item-desc">O que te toma mais tempo no dia a dia? O que você quer que os agentes façam — e o que prefere continuar fazendo.</p>
+                  <div class="flow-item-tags">
+                    <span>Rotina</span><span>·</span>
+                    <span>Prioridades</span><span>·</span>
+                    <span>Limites</span>
+                  </div>
+                </div>
               </div>
             </div>
 
