@@ -858,17 +858,20 @@
   .ov-timeline {
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     gap: 0;
     margin: 32px auto 24px;
     width: 100%;
-    max-width: 520px;
+    max-width: 560px;
   }
   .ov-timeline-step {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    flex: 0 0 auto;
+    flex: 0 0 150px;
+    width: 150px;
+    text-align: center;
   }
   .ov-timeline-dot {
     width: 14px;
@@ -886,6 +889,14 @@
     background: linear-gradient(135deg, #E91E8C, #8B5CF6, #2563EB, #2DB67D);
     border-color: transparent;
     box-shadow: 0 0 0 4px rgba(139,92,246,0.16), 0 2px 10px rgba(233,30,140,0.30);
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(139,92,246,0.16), 0 2px 10px rgba(233,30,140,0.30); }
+    50%      { box-shadow: 0 0 0 8px rgba(139,92,246,0.08), 0 2px 14px rgba(233,30,140,0.20); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ov-timeline-step.is-current .ov-timeline-dot { animation: none; }
   }
   .ov-timeline-step.is-future .ov-timeline-dot {
     border-color: var(--line);
@@ -898,6 +909,10 @@
     border-radius: 999px;
     margin-top: 6px; /* alinhar com o centro do dot */
     min-width: 40px;
+  }
+  /* A linha após o passo atual (entre "Playbook" e "Call") ainda não foi percorrida */
+  .ov-timeline-step.is-current + .ov-timeline-line {
+    background: var(--line);
   }
   .ov-timeline-label {
     display: flex;
@@ -971,6 +986,9 @@
     .ov-timeline-step {
       flex-direction: row;
       gap: 12px;
+      flex: 0 0 auto;
+      width: auto;
+      text-align: left;
     }
     .ov-timeline-line {
       width: 2px;
