@@ -1417,6 +1417,12 @@
     border-color: var(--stage-color);
     background: var(--stage-color);
   }
+  /* Etapa 4 (automático): dot em gradiente colorido (como o da timeline), distinto do verde da Etapa 3 */
+  .tracker-node[data-stage="4"].is-active .node-circle,
+  .tracker-node[data-stage="4"].is-done .node-circle {
+    background: linear-gradient(135deg, #E91E8C, #8B5CF6, #2563EB, #2DB67D);
+    border-color: transparent;
+  }
   .tracker-node.is-done .node-check { opacity: 1; }
   .tracker-node.just-completed .node-circle {
     animation: node-bounce .5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;

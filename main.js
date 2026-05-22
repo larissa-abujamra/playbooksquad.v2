@@ -162,7 +162,6 @@
 
     function updateTracker() {
       let globalDone = 0;
-      let firstIncomplete = null;
 
       stages.forEach(stage => {
         const node = tracker.querySelector('.tracker-node[data-stage="' + stage.id + '"]');
@@ -174,14 +173,14 @@
         globalDone += done;
         countEl.textContent = done + '/' + total;
 
-        node.classList.remove('is-active', 'is-done');
+        // is-active é controlado pelo scroll-spy (etapa visível), não aqui
+        node.classList.remove('is-done');
 
         if (complete) {
           node.classList.add('is-done');
           if (lineFill) lineFill.style.width = '100%';
         } else {
           if (lineFill) lineFill.style.width = ((done / total) * 100) + '%';
-          if (firstIncomplete === null) firstIncomplete = stage.id;
         }
 
         if (initialized && complete && !wasComplete.get(stage.id)) {
@@ -189,11 +188,6 @@
         }
         wasComplete.set(stage.id, complete);
       });
-
-      if (firstIncomplete !== null) {
-        const activeNode = tracker.querySelector('.tracker-node[data-stage="' + firstIncomplete + '"]');
-        if (activeNode) activeNode.classList.add('is-active');
-      }
 
       if (trackerPct) trackerPct.textContent = Math.round((globalDone / totalTasks) * 100) + '%';
       if (trackerDone) trackerDone.textContent = globalDone;
@@ -217,8 +211,31 @@
       });
     });
 
+    // Scroll-spy: o node "ativo" (glowing) é o da etapa visível na tela,
+    // independente de progresso/ordem de conclusão.
+    let activeViewStage = 1;
+    function applyTrackerActive() {
+      tracker.querySelectorAll('.tracker-node').forEach(n => n.classList.remove('is-active'));
+      const node = tracker.querySelector('.tracker-node[data-stage="' + activeViewStage + '"]');
+      if (node) node.classList.add('is-active');
+    }
+    // A etapa "atual" é a que contém o centro vertical da tela (linha em 50%).
+    // IntersectionObserver é robusto a mudanças de layout (vídeos carregando, etc).
+    const trackerStageEls = document.querySelectorAll('#setup .stage[id]');
+    if (trackerStageEls.length && 'IntersectionObserver' in window) {
+      const trackerSpy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = parseInt(entry.target.id.replace('stage-', ''), 10);
+          if (id) { activeViewStage = id; applyTrackerActive(); }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+      trackerStageEls.forEach(el => trackerSpy.observe(el));
+    }
+
     taskInputs.forEach(t => t.addEventListener('change', updateTracker));
     updateTracker();
+    applyTrackerActive();
   }
 
   // ============ Sidebar sub-nav (per-stage progress + scroll spy) ============
