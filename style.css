@@ -809,6 +809,48 @@
     }
   }
 
+  /* ============ Spotlight: foco nos CTAs (Etapa 2 e Etapa 3) ============ */
+  /* Transição suave nos blocos esmaecíveis — vale pros dois sentidos (liga/desliga) */
+  .content > *,
+  .doc > *,
+  #setup > *,
+  #stage-2 > *,
+  #stage-3 > *,
+  #stage-3 > .check-block > * {
+    transition: opacity 0.45s ease;
+  }
+
+  /* Nível externo (fora do .doc/#setup) — esmaece igual pros dois spotlights.
+     Esmaecemos só os IRMÃOS em cada nível do caminho até o alvo — nunca os
+     ancestrais, porque opacity num ancestral "vazaria" no próprio alvo. */
+  body.spotlight-training .content > :not(.doc),
+  body.spotlight-integration .content > :not(.doc),
+  body.spotlight-training .doc > :not(#setup),
+  body.spotlight-integration .doc > :not(#setup) {
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* Etapa 2 — mantém só o .training-cta-block aceso */
+  body.spotlight-training #setup > :not(#stage-2),
+  body.spotlight-training #stage-2 > :not(.training-cta-block) {
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* Etapa 3 — mantém só o .integration-hero aceso */
+  body.spotlight-integration #setup > :not(#stage-3),
+  body.spotlight-integration #stage-3 > :not(.check-block),
+  body.spotlight-integration #stage-3 > .check-block > :not(.integration-hero) {
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .content > *, .doc > *, #setup > *,
+    #stage-2 > *, #stage-3 > *, #stage-3 > .check-block > * { transition: none; }
+  }
+
   /* ============ Overview screen ============ */
   body.in-app .overview { display: none; }
   body:not(.in-app) .app { display: none; }
