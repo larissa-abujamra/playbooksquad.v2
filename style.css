@@ -3645,6 +3645,23 @@
 .training-cta-block {
   margin-top: 32px;
   margin-bottom: 28px;
+  position: relative;
+}
+
+/* Waz espiando pra fora da sidebar, na linha do "Pronto pra treinar seu time?" */
+.waz-peek {
+  position: absolute;
+  left: -200px;
+  top: -26px;
+  width: 132px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.18));
+}
+@media (max-width: 900px) {
+  .waz-peek { display: none; } /* sidebar some no mobile */
 }
 
 /* Label discreto acima do botão gigante */
