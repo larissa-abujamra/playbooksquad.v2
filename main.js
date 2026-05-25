@@ -1498,26 +1498,34 @@
     });
   }
 
-  // ============ Waz peek: alinha verticalmente com o .training-cta-block ============
-  // Fica na borda da sidebar, mas rola junto com a seção (entra/sai ao rolar).
+  // ============ Personagens espiando (Waz e Maky) alinhados ao .training-cta-block ============
+  // Ficam nas bordas (Waz na sidebar/esquerda, Maky na direita) e rolam junto com a seção.
   const wazPeek = document.querySelector('.waz-peek');
-  const wazApp = document.querySelector('.app');
-  const wazCta = document.querySelector('.training-cta-block');
-  if (wazPeek && wazApp && wazCta) {
-    const placeWaz = () => {
-      const a = wazApp.getBoundingClientRect();
-      const c = wazCta.getBoundingClientRect();
+  const makyPeek = document.querySelector('.maky-peek');
+  const peekApp = document.querySelector('.app');
+  const peekCta = document.querySelector('.training-cta-block');
+  if (peekApp && peekCta && (wazPeek || makyPeek)) {
+    const placePeeks = () => {
+      const a = peekApp.getBoundingClientRect();
+      const c = peekCta.getBoundingClientRect();
       if (!c.height) return; // app escondido / sem layout ainda
       const centerInApp = (c.top - a.top) + c.height / 2;
-      wazPeek.style.top = Math.round(centerInApp - wazPeek.offsetHeight / 2) + 'px';
+      if (wazPeek) {
+        wazPeek.style.top = Math.round(centerInApp - wazPeek.offsetHeight / 2) + 'px';
+      }
+      if (makyPeek) {
+        // Maky um pouco acima da linha do Waz
+        makyPeek.style.top = Math.round(centerInApp - makyPeek.offsetHeight / 2 - 70) + 'px';
+      }
     };
-    placeWaz();
-    wazPeek.addEventListener('load', placeWaz);
-    window.addEventListener('load', placeWaz);
-    window.addEventListener('resize', placeWaz);
+    placePeeks();
+    if (wazPeek) wazPeek.addEventListener('load', placePeeks);
+    if (makyPeek) makyPeek.addEventListener('load', placePeeks);
+    window.addEventListener('load', placePeeks);
+    window.addEventListener('resize', placePeeks);
     if ('ResizeObserver' in window) {
-      const ro = new ResizeObserver(placeWaz);
-      ro.observe(wazApp);
+      const ro = new ResizeObserver(placePeeks);
+      ro.observe(peekApp);
       const content = document.querySelector('.content');
       if (content) ro.observe(content);
     }

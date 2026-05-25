@@ -18,7 +18,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
   body {
     margin: 0;
     font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
@@ -28,6 +28,7 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: clip; /* personagens espiando não geram scroll horizontal */
   }
   a { color: inherit; }
   button { font: inherit; cursor: pointer; }
@@ -3762,8 +3763,22 @@
   z-index: 40;
   filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
 }
+/* Maky espiando na borda DIREITA da tela, um pouco acima da linha do Waz
+   (rola junto com a seção; o `top` é definido via JS). */
+.maky-peek {
+  position: absolute;
+  right: -10px;
+  top: 0;
+  width: 168px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  z-index: 40;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+}
 @media (max-width: 900px) {
-  .waz-peek { display: none; } /* sidebar some no mobile */
+  .waz-peek,
+  .maky-peek { display: none; } /* sidebar some / tela estreita no mobile */
 }
 
 /* Label discreto acima do botão gigante */
