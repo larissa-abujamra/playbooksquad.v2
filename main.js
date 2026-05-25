@@ -1511,9 +1511,10 @@
   // Ficam nas bordas (Waz na sidebar/esquerda, Maky na direita) e rolam junto com a seção.
   const wazPeek = document.querySelector('.waz-peek');
   const makyPeek = document.querySelector('.maky-peek');
+  const finPeek = document.querySelector('.fin-peek');
   const peekApp = document.querySelector('.app');
   const peekCta = document.querySelector('.training-cta-block');
-  if (peekApp && peekCta && (wazPeek || makyPeek)) {
+  if (peekApp && peekCta && (wazPeek || makyPeek || finPeek)) {
     const placePeeks = () => {
       const a = peekApp.getBoundingClientRect();
       const c = peekCta.getBoundingClientRect();
@@ -1526,10 +1527,15 @@
         // Maky um pouco acima da linha do Waz
         makyPeek.style.top = Math.round(centerInApp - makyPeek.offsetHeight / 2 - 70) + 'px';
       }
+      if (finPeek) {
+        // Fin alinhado com a Maky (mesma borda), porém abaixo dela
+        finPeek.style.top = Math.round(centerInApp - finPeek.offsetHeight / 2 + 150) + 'px';
+      }
     };
     placePeeks();
     if (wazPeek) wazPeek.addEventListener('load', placePeeks);
     if (makyPeek) makyPeek.addEventListener('load', placePeeks);
+    if (finPeek) finPeek.addEventListener('load', placePeeks);
     window.addEventListener('load', placePeeks);
     window.addEventListener('resize', placePeeks);
     if ('ResizeObserver' in window) {

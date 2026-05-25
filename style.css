@@ -3749,7 +3749,7 @@
   position: absolute;
   left: calc(var(--sidebar-w) - 18px);
   top: 0;
-  width: 150px;
+  width: 167px;
   height: auto;
   pointer-events: none;
   user-select: none;
@@ -3762,16 +3762,30 @@
   position: absolute;
   right: -10px;
   top: 0;
-  width: 168px;
+  width: 165px;
   height: auto;
   pointer-events: none;
   user-select: none;
   z-index: 40;
   filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
 }
+/* Fin espiando na borda direita, alinhado com a Maky porém abaixo (top via JS) */
+.fin-peek {
+  position: absolute;
+  right: -10px;
+  top: 0;
+  width: 137px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  z-index: 40;
+  rotate: -5deg;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+}
 @media (max-width: 900px) {
   .waz-peek,
-  .maky-peek { display: none; } /* sidebar some / tela estreita no mobile */
+  .maky-peek,
+  .fin-peek { display: none; } /* sidebar some / tela estreita no mobile */
 }
 
 /* Label discreto acima do botão gigante */
