@@ -40,6 +40,7 @@
     display: grid;
     grid-template-columns: var(--sidebar-w) 1fr;
     min-height: 100vh;
+    position: relative; /* âncora pro waz-peek */
   }
   @media (max-width: 900px) {
     .app { grid-template-columns: 1fr; }
@@ -3748,12 +3749,12 @@
   position: relative;
 }
 
-/* Waz fixo na borda direita da sidebar — sempre parece estar espiando */
+/* Waz espiando na borda da sidebar, na altura do .training-cta-block
+   (rola junto com a seção; o `top` é definido via JS). */
 .waz-peek {
-  position: fixed;
+  position: absolute;
   left: calc(var(--sidebar-w) - 18px);
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   width: 150px;
   height: auto;
   pointer-events: none;

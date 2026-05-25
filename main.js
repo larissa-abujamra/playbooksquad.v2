@@ -1497,3 +1497,28 @@
       setStageHeight(intStage.classList.contains('show') ? checklistSlide : introSlide);
     });
   }
+
+  // ============ Waz peek: alinha verticalmente com o .training-cta-block ============
+  // Fica na borda da sidebar, mas rola junto com a seção (entra/sai ao rolar).
+  const wazPeek = document.querySelector('.waz-peek');
+  const wazApp = document.querySelector('.app');
+  const wazCta = document.querySelector('.training-cta-block');
+  if (wazPeek && wazApp && wazCta) {
+    const placeWaz = () => {
+      const a = wazApp.getBoundingClientRect();
+      const c = wazCta.getBoundingClientRect();
+      if (!c.height) return; // app escondido / sem layout ainda
+      const centerInApp = (c.top - a.top) + c.height / 2;
+      wazPeek.style.top = Math.round(centerInApp - wazPeek.offsetHeight / 2) + 'px';
+    };
+    placeWaz();
+    wazPeek.addEventListener('load', placeWaz);
+    window.addEventListener('load', placeWaz);
+    window.addEventListener('resize', placeWaz);
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(placeWaz);
+      ro.observe(wazApp);
+      const content = document.querySelector('.content');
+      if (content) ro.observe(content);
+    }
+  }
