@@ -38,277 +38,84 @@
     });
   });
 
-  // ============ Setup progress (localStorage) ============
-  const STORAGE_KEY = 'squad-playbook-confeitarias-v4';
-  const taskInputs = document.querySelectorAll('[data-task]');
-  const totalEl = document.getElementById('prog-total');
-  const doneEl = document.getElementById('prog-done');
-  const pctEl = document.getElementById('prog-pct');
-  const fillEl = document.getElementById('prog-fill');
-  const fillMobile = document.getElementById('prog-fill-m');
-  if (totalEl) totalEl.textContent = taskInputs.length;
+  // (Progresso por checkboxes removido — a página é instrucional;
+  //  o tracker agora é preenchido por scroll, ver abaixo.)
 
-  function loadState() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
-    catch(e) { return {}; }
-  }
-  function saveState(state) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-    catch(e) {}
-  }
-
-  function updateProgress() {
-    const checked = [...taskInputs].filter(t => t.checked).length;
-    const pct = taskInputs.length ? Math.round((checked / taskInputs.length) * 100) : 0;
-    if (doneEl) doneEl.textContent = checked;
-    if (pctEl) pctEl.textContent = pct + '%';
-    if (fillEl) fillEl.style.width = pct + '%';
-    if (fillMobile) fillMobile.style.width = pct + '%';
-  }
-
-  const stateLoaded = loadState();
-  taskInputs.forEach(t => {
-    if (stateLoaded[t.id]) t.checked = true;
-    t.addEventListener('change', () => {
-      const s = loadState();
-      if (t.checked) s[t.id] = true;
-      else delete s[t.id];
-      saveState(s);
-      updateProgress();
-    });
-  });
-  updateProgress();
-
-  // ============ Progress Tracker (sticky, gamified) ============
+  // ============ Progress Tracker (preenchido por SCROLL, não por checkbox) ============
   const tracker = document.getElementById('progress-tracker');
   if (tracker) {
-    const stages = [
-      { id: 1, tasks: ['t-1-1','t-1-2','t-1-3'] },
-      { id: 2, tasks: ['t-2-1','t-2-2','t-2-3'] },
-      { id: 3, tasks: ['t-3-1','t-3-2','t-3-4'] },
-      { id: 4, tasks: ['t-4-1','t-4-2','t-4-3'] },
-    ];
-    const totalTasks = stages.reduce((s, st) => s + st.tasks.length, 0);
-    const wasComplete = new Map();
-    let allWasComplete = false;
-    let initialized = false;
-
     const trackerPct = document.getElementById('tracker-pct');
-    const trackerDone = document.getElementById('tracker-done');
-    const trackerToast = document.getElementById('tracker-toast');
-    const trackerBanner = document.getElementById('tracker-banner');
+    const stageEls = [...document.querySelectorAll('#setup .stage[id]')];
 
-    function calcStage(stage) {
-      const done = stage.tasks.reduce((n, id) => {
-        const cb = document.getElementById(id);
-        return n + (cb && cb.checked ? 1 : 0);
-      }, 0);
-      return { done, total: stage.tasks.length, complete: done === stage.tasks.length };
-    }
-
-    function celebrateStage(node, stageId) {
-      node.classList.add('just-completed');
-      setTimeout(() => node.classList.remove('just-completed'), 700);
-      if (!trackerToast) return;
-      const color = getComputedStyle(node).getPropertyValue('--stage-color').trim();
-      trackerToast.textContent = `Etapa ${stageId} completa ✓`;
-      if (color) trackerToast.style.background = color;
-      trackerToast.style.left = '';
-      const nodeRect = node.getBoundingClientRect();
-      const trackerRect = tracker.getBoundingClientRect();
-      const centerX = nodeRect.left + nodeRect.width / 2 - trackerRect.left;
-      trackerToast.style.left = centerX + 'px';
-      trackerToast.classList.add('show');
-      clearTimeout(trackerToast._t);
-      trackerToast._t = setTimeout(() => trackerToast.classList.remove('show'), 2500);
-    }
-
-    function spawnConfetti() {
-      const container = document.createElement('div');
-      container.className = 'confetti-container';
-      document.body.appendChild(container);
-      const colors = ['#E91E8C', '#2DB67D', '#2563EB', '#F59E0B', '#8B5CF6'];
-      for (let i = 0; i < 22; i++) {
-        const piece = document.createElement('div');
-        piece.className = 'confetti-piece';
-        piece.style.left = (Math.random() * 100) + '%';
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDelay = (Math.random() * 0.6) + 's';
-        piece.style.animationDuration = (2 + Math.random() * 1.2) + 's';
-        const size = 6 + Math.random() * 6;
-        piece.style.width = size + 'px';
-        piece.style.height = size + 'px';
-        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-        container.appendChild(piece);
-      }
-      setTimeout(() => container.remove(), 4500);
-    }
-
-    function celebrateAll() {
-      if (trackerBanner) {
-        trackerBanner.classList.add('show');
-        setTimeout(() => {
-          trackerBanner.style.transition = 'opacity .4s ease';
-          trackerBanner.style.opacity = '0';
-          setTimeout(() => {
-            trackerBanner.classList.remove('show');
-            trackerBanner.style.opacity = '';
-            trackerBanner.style.transition = '';
-          }, 400);
-        }, 6000);
-      }
-      spawnConfetti();
-    }
-
-    function updateTracker() {
-      let globalDone = 0;
-
-      stages.forEach(stage => {
-        const node = tracker.querySelector('.tracker-node[data-stage="' + stage.id + '"]');
-        const line = tracker.querySelector('.tracker-line[data-stage="' + stage.id + '"]');
-        const lineFill = line ? line.querySelector('.tracker-line-fill') : null;
-        const countEl = node.querySelector('.node-count');
-
-        const { done, total, complete } = calcStage(stage);
-        globalDone += done;
-        countEl.textContent = done + '/' + total;
-
-        // is-active é controlado pelo scroll-spy (etapa visível), não aqui
-        node.classList.remove('is-done');
-
-        if (complete) {
-          node.classList.add('is-done');
-          if (lineFill) lineFill.style.width = '100%';
-        } else {
-          if (lineFill) lineFill.style.width = ((done / total) * 100) + '%';
-        }
-
-        if (initialized && complete && !wasComplete.get(stage.id)) {
-          celebrateStage(node, stage.id);
-        }
-        wasComplete.set(stage.id, complete);
-      });
-
-      if (trackerPct) trackerPct.textContent = Math.round((globalDone / totalTasks) * 100) + '%';
-      if (trackerDone) trackerDone.textContent = globalDone;
-
-      const allComplete = globalDone === totalTasks;
-      if (initialized && allComplete && !allWasComplete) celebrateAll();
-      allWasComplete = allComplete;
-      initialized = true;
-    }
-
+    // Clicar num node rola até a etapa correspondente
     tracker.querySelectorAll('.tracker-node').forEach(node => {
       const btn = node.querySelector('.node-circle');
+      if (!btn) return;
       btn.addEventListener('click', () => {
-        const stageEls = document.querySelectorAll('#setup .stage');
         const target = stageEls[parseInt(node.dataset.stage, 10) - 1];
         if (!target) return;
         const isMobile = window.matchMedia('(max-width: 900px)').matches;
         const offset = isMobile ? 130 : 80;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
       });
     });
 
-    // Scroll-spy: o node "ativo" (glowing) é o da etapa visível na tela,
-    // independente de progresso/ordem de conclusão.
-    let activeViewStage = 1;
-    function applyTrackerActive() {
+    // Linha de leitura = base do tracker fixo. A etapa "preenche" conforme passa por ela.
+    const READ = () => tracker.getBoundingClientRect().bottom + 24;
+    const stageProgress = (el) => {
+      const r = el.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (READ() - r.top) / Math.max(1, r.height)));
+    };
+
+    // Node ativo = etapa no centro da tela
+    let activeStage = 1;
+    const applyActive = () => {
       tracker.querySelectorAll('.tracker-node').forEach(n => n.classList.remove('is-active'));
-      const node = tracker.querySelector('.tracker-node[data-stage="' + activeViewStage + '"]');
-      if (node) node.classList.add('is-active');
-    }
-    // A etapa "atual" é a que contém o centro vertical da tela (linha em 50%).
-    // IntersectionObserver é robusto a mudanças de layout (vídeos carregando, etc).
-    const trackerStageEls = document.querySelectorAll('#setup .stage[id]');
-    if (trackerStageEls.length && 'IntersectionObserver' in window) {
-      const trackerSpy = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = parseInt(entry.target.id.replace('stage-', ''), 10);
-          if (id) { activeViewStage = id; applyTrackerActive(); }
+      const n = tracker.querySelector('.tracker-node[data-stage="' + activeStage + '"]');
+      if (n) n.classList.add('is-active');
+    };
+    if ('IntersectionObserver' in window && stageEls.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const id = parseInt(e.target.id.replace('stage-', ''), 10);
+          if (id) { activeStage = id; applyActive(); }
         });
       }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
-      trackerStageEls.forEach(el => trackerSpy.observe(el));
+      stageEls.forEach(el => io.observe(el));
     }
 
-    taskInputs.forEach(t => t.addEventListener('change', updateTracker));
-    updateTracker();
-    applyTrackerActive();
+    const updateTrackerScroll = () => {
+      stageEls.forEach((el, i) => {
+        const stageId = i + 1;
+        const p = stageProgress(el);
+        const node = tracker.querySelector('.tracker-node[data-stage="' + stageId + '"]');
+        const lineFill = tracker.querySelector('.tracker-line[data-stage="' + stageId + '"] .tracker-line-fill');
+        if (lineFill) lineFill.style.width = (p * 100) + '%';      // linha entre etapas
+        if (node) node.classList.toggle('is-done', p >= 0.999);    // etapa já percorrida
+      });
+      if (trackerPct && stageEls.length) {
+        const first = stageEls[0].getBoundingClientRect();
+        const last = stageEls[stageEls.length - 1].getBoundingClientRect();
+        const total = Math.max(1, last.bottom - first.top);
+        const pct = Math.max(0, Math.min(1, (READ() - first.top) / total));
+        trackerPct.textContent = Math.round(pct * 100) + '%';
+      }
+    };
+    window.addEventListener('scroll', updateTrackerScroll, { passive: true });
+    window.addEventListener('resize', updateTrackerScroll);
+    window.addEventListener('load', updateTrackerScroll);
+    // recalcula quando o layout muda (vídeos carregando, app aparecendo, etc.)
+    if ('ResizeObserver' in window) {
+      const content = document.querySelector('.content');
+      if (content) new ResizeObserver(updateTrackerScroll).observe(content);
+    }
+    updateTrackerScroll();
+    applyActive();
   }
 
-  // ============ Sidebar sub-nav (per-stage progress + scroll spy) ============
-  const subNavEls = document.querySelectorAll('.nav-sub[data-nav-stage]');
-  if (subNavEls.length) {
-    const navStages = [
-      { id: 1, tasks: ['t-1-1','t-1-2','t-1-3'] },
-      { id: 2, tasks: ['t-2-1','t-2-2','t-2-3'] },
-      { id: 3, tasks: ['t-3-1','t-3-2','t-3-4'] },
-      { id: 4, tasks: ['t-4-1','t-4-2','t-4-3'] },
-    ];
-    const navTotalTasks = navStages.reduce((s, st) => s + st.tasks.length, 0);
-    const navTotalEl = document.getElementById('nav-setup-total');
-
-    function countDone(stage) {
-      return stage.tasks.reduce((n, id) => {
-        const cb = document.getElementById(id);
-        return n + (cb && cb.checked ? 1 : 0);
-      }, 0);
-    }
-
-    function updateSidebarNav() {
-      let globalDone = 0;
-      let firstIncomplete = null;
-
-      navStages.forEach(stage => {
-        const sub = document.querySelector('.nav-sub[data-nav-stage="' + stage.id + '"]');
-        if (!sub) return;
-        const statusDot = sub.querySelector('.nav-sub-status');
-        const countEl = sub.querySelector('.nav-sub-count');
-
-        const done = countDone(stage);
-        const total = stage.tasks.length;
-        globalDone += done;
-        countEl.textContent = done + '/' + total;
-
-        const isComplete = done === total;
-        const hasProgress = done > 0 && !isComplete;
-
-        sub.classList.remove('is-complete', 'has-progress', 'is-future');
-
-        if (isComplete) {
-          statusDot.dataset.status = 'done';
-          sub.classList.add('is-complete');
-        } else if (hasProgress) {
-          statusDot.dataset.status = 'active';
-          sub.classList.add('has-progress');
-          if (firstIncomplete === null) firstIncomplete = stage.id;
-        } else {
-          statusDot.dataset.status = 'empty';
-          if (firstIncomplete === null) firstIncomplete = stage.id;
-        }
-      });
-
-      navStages.forEach(stage => {
-        const sub = document.querySelector('.nav-sub[data-nav-stage="' + stage.id + '"]');
-        if (!sub) return;
-        const done = countDone(stage);
-        if (done === 0 && firstIncomplete !== null && stage.id > firstIncomplete) {
-          sub.classList.add('is-future');
-        }
-      });
-
-      if (navTotalEl) navTotalEl.textContent = globalDone + '/' + navTotalTasks;
-
-      const navGroup = document.getElementById('nav-setup-group');
-      if (navGroup) navGroup.classList.toggle('all-complete', globalDone === navTotalTasks);
-    }
-
-    taskInputs.forEach(t => t.addEventListener('change', updateSidebarNav));
-    updateSidebarNav();
-
-    // Scroll-spy: marca a etapa visível com is-viewing
+  // ============ Sidebar sub-nav (scroll spy — destaca a etapa visível) ============
+  {
     const stageEls = document.querySelectorAll('.stage[id]');
     if (stageEls.length && 'IntersectionObserver' in window) {
       const stageIO = new IntersectionObserver((entries) => {
@@ -1473,7 +1280,6 @@
     const checks = Array.from(intStage.querySelectorAll('.int-check-box'));
     const schedule = document.getElementById('integration-schedule');
     const hint = document.getElementById('integration-locked-hint');
-    const t34 = document.getElementById('t-3-4');
 
     const setStageHeight = (el) => { if (el) intStage.style.height = el.offsetHeight + 'px'; };
 
@@ -1493,10 +1299,6 @@
       const all = checks.length > 0 && checks.every(c => c.checked);
       if (schedule) schedule.classList.toggle('is-locked', !all);
       if (hint) hint.style.display = all ? 'none' : '';
-      if (t34 && t34.checked !== all) {
-        t34.checked = all;
-        t34.dispatchEvent(new Event('change'));
-      }
       if (intStage.classList.contains('show')) setStageHeight(checklistSlide); // botão apareceu/sumiu
     };
     checks.forEach(c => c.addEventListener('change', syncChecklist));
