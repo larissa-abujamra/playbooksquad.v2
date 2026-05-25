@@ -1409,6 +1409,10 @@
         }
         syncFlowPause();
       });
+      // Passar o mouse num card o destaca (vira o card em foco), além de pausar.
+      item.addEventListener('mouseenter', () => {
+        if (idx !== flowActiveIndex) setFlowActive(idx);
+      });
       item.addEventListener('focus', () => {
         if (idx !== flowActiveIndex) setFlowActive(idx);
       });
