@@ -24,8 +24,9 @@
     <section class="ov-hero">
       <div>
         <div class="ov-eyebrow">Playbook de Setup para Confeitarias</div>
-        <h1 class="ov-title">Vamos preparar tudo <span class="accent-stripe">antes da sua próxima call.</span></h1>
-        <p class="ov-lede">Você já baixou o app. Agora esse guia vai te ajudar a montar seu catálogo e treinar seus agentes, pra que na call de integração, seja só conectar e começar a usar.</p>
+        <h1 class="ov-title">Vamos iniciar o treinamento dos <span class="accent-stripe">seus novos agentes.</span></h1>
+        <p class="ov-lede">Este guia irá te auxiliar na organização e treinamento dos seus agentes, a ideia é instruir e fornecer as principais informações da sua empresa, assim como faz ao contratar um novo funcionário.
+        </p>
 
         <!-- Timeline visual: onde o cliente está -->
         <div class="ov-timeline">
@@ -81,7 +82,7 @@
         <!-- Card 1: Brigadayros -->
         <button class="tcard" data-index="0" aria-label="Ler depoimento da Brigadayros">
           <div class="tcard-inner">
-            <div class="tcard-accent" style="background: #E91E8C;"></div>
+            <div class="tcard-accent" style="background: #2DB67D;"></div>
             <div class="tcard-photo">
               <img src="imgs/brigadayros.png" alt="Brigadayros" />
             </div>
@@ -94,7 +95,7 @@
         <!-- Card 2: Doguh -->
         <button class="tcard" data-index="1" aria-label="Ler depoimento da Doguh Confeitaria">
           <div class="tcard-inner">
-            <div class="tcard-accent" style="background: #2DB67D;"></div>
+            <div class="tcard-accent" style="background: #E91E8C;"></div>
             <div class="tcard-photo">
               <img src="imgs/doguh.png" alt="Doguh Confeitaria" />
             </div>
@@ -104,15 +105,15 @@
           </div>
         </button>
 
-        <!-- Card 3: Cookies da Nola -->
-        <button class="tcard" data-index="2" aria-label="Ler depoimento da Cookies da Nola">
+        <!-- Card 3: Oito Oitenta -->
+        <button class="tcard" data-index="2" aria-label="Ler depoimento da Oito Oitenta Cookies">
           <div class="tcard-inner">
             <div class="tcard-accent" style="background: #2563EB;"></div>
             <div class="tcard-photo">
-              <img src="imgs/cookiesnola.png" alt="Cookies da Nola" />
+              <img src="imgs/oitooitenta.png" alt="Oito Oitenta Cookies" />
             </div>
             <p class="tcard-quote">"O Fin me salvou. Eu não sabia quanto tava lucrando de verdade porque não controlava nada..."</p>
-            <p class="tcard-name">Cookies da Nola.</p>
+            <p class="tcard-name">Oito Oitenta.</p>
             <p class="tcard-role">Cookies artesanais</p>
           </div>
         </button>
@@ -145,8 +146,7 @@
 
     <!-- CTA -->
     <section class="ov-cta">
-      <h2>Pronto pra colocar seu squad pra trabalhar?</h2>
-      <p>A próxima tela é um passo a passo interativo: 4 etapas, 11 tarefas, com checkbox em cada uma. O progresso fica salvo no seu navegador — você pode parar a qualquer momento e voltar depois.</p>
+      <h2>Pronto pra colocar sua equipe pra trabalhar?</h2>
       
       <div class="ov-cta-action">
         <button class="btn-glow" id="start-setup">
@@ -191,13 +191,13 @@
       <div class="nav-subs">
         <a class="nav-sub" href="#stage-1" data-nav-stage="1">
           <span class="nav-sub-status" data-status="empty"></span>
-          <span class="nav-sub-name">Monte seu catálogo</span>
+          <span class="nav-sub-name">Treine seus agentes</span>
           <span class="nav-sub-count">0/3</span>
         </a>
         <a class="nav-sub" href="#stage-2" data-nav-stage="2">
           <span class="nav-sub-status" data-status="empty"></span>
-          <span class="nav-sub-name">Defina o tom dos agentes</span>
-          <span class="nav-sub-count">0/1</span>
+          <span class="nav-sub-name">Monte seu catálogo</span>
+          <span class="nav-sub-count">0/3</span>
         </a>
         <a class="nav-sub" href="#stage-3" data-nav-stage="3">
           <span class="nav-sub-status" data-status="empty"></span>
@@ -237,8 +237,8 @@
       <select id="mobile-nav" aria-label="Ir para seção">
         <optgroup label="Setup">
           <option value="#setup">Setup (visão geral)</option>
-          <option value="#stage-1">① Monte seu catálogo</option>
-          <option value="#stage-2">② Defina o tom dos agentes</option>
+          <option value="#stage-1">① Treine seus agentes</option>
+          <option value="#stage-2">② Monte seu catálogo</option>
           <option value="#stage-3">③ Integrações</option>
           <option value="#stage-4">④ Piloto automático</option>
         </optgroup>
@@ -256,26 +256,26 @@
       <div class="tracker-inner">
         <div class="tracker-steps">
 
-          <div class="tracker-node" data-stage="1" style="--stage-color: var(--fin);">
-            <button class="node-circle" type="button" aria-label="Ir para Etapa 1: Monte seu catálogo">
+          <div class="tracker-node" data-stage="1" style="--stage-color: var(--maky);">
+            <button class="node-circle" type="button" aria-label="Ir para Etapa 1: Treine seus agentes">
+              <svg class="node-check" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="node-label">Agentes</div>
+            <div class="node-count">0/3</div>
+          </div>
+
+          <div class="tracker-line" data-stage="1"><div class="tracker-line-fill"></div></div>
+
+          <div class="tracker-node" data-stage="2" style="--stage-color: var(--fin);">
+            <button class="node-circle" type="button" aria-label="Ir para Etapa 2: Monte seu catálogo">
               <svg class="node-check" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
             <div class="node-label">Catálogo</div>
             <div class="node-count">0/3</div>
-          </div>
-
-          <div class="tracker-line" data-stage="1"><div class="tracker-line-fill"></div></div>
-
-          <div class="tracker-node" data-stage="2" style="--stage-color: var(--maky);">
-            <button class="node-circle" type="button" aria-label="Ir para Etapa 2: Defina o tom dos agentes">
-              <svg class="node-check" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <div class="node-label">Agentes</div>
-            <div class="node-count">0/1</div>
           </div>
 
           <div class="tracker-line" data-stage="2"><div class="tracker-line-fill"></div></div>
@@ -320,48 +320,153 @@
       <!-- ============ SETUP ============ -->
       <section class="section" id="setup" style="margin-top: 8px;">
         <div class="section-eyebrow">Setup</div>
-        <h2>Configure seu squad</h2>
-        <p class="sub">Marque cada passo conforme for completando. Seu progresso fica salvo automaticamente.</p>
+        <h2>Configure seu Squad</h2>
 
         <!-- ETAPA 1 -->
         <div class="stage" id="stage-1">
           <div class="stage-head">
             <span class="stage-num">Etapa 01</span>
+            <span class="stage-title">Treine seus agentes</span>
+          </div>
+
+          <p class="stage-intro">É como contratar funcionários novos! Quanto mais você ensinar, melhores os resultados e menos tempo vai perder corrigindo. No final, você baixa um PDF prontinho e envia pro Waz na conversa dele. Essa etapa tem dois momentos:</p>
+
+          <!-- Dois fluxos visuais (spotlight rotativo) -->
+          <div class="flow-explorer" role="tablist" aria-label="Partes do treinamento">
+
+            <!-- Card 1: Sobre seu negócio -->
+            <div class="flow-item is-active is-running" role="tab" aria-selected="true" tabindex="0">
+              <div class="flow-bar">
+                <div class="flow-bar-fill"></div>
+              </div>
+              <div class="flow-item-content">
+                <div class="flow-item-header">
+                  <div class="flow-item-number">1</div>
+                  <div>
+                    <div class="flow-item-title">Conte sobre seu negócio</div>
+                  </div>
+                </div>
+                <div class="flow-item-details">
+                  <p class="flow-item-desc">Informações que o Waz precisa pra responder suas clientes: horário, localização, regras, formas de pagamento e tom de voz.</p>
+                  <div class="flow-item-tags">
+                    <span>Horário</span><span>·</span>
+                    <span>Localização</span><span>·</span>
+                    <span>Regras</span><span>·</span>
+                    <span>Tom de voz</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Linha conectora horizontal -->
+            <div class="flow-connector"></div>
+
+            <!-- Card 2: Como a IA pode te ajudar -->
+            <div class="flow-item" role="tab" aria-selected="false" tabindex="0">
+              <div class="flow-bar">
+                <div class="flow-bar-fill"></div>
+              </div>
+              <div class="flow-item-content">
+                <div class="flow-item-header">
+                  <div class="flow-item-number">2</div>
+                  <div>
+                    <div class="flow-item-title">Diga como a IA pode te ajudar</div>
+                  </div>
+                </div>
+                <div class="flow-item-details">
+                  <p class="flow-item-desc">O que te toma mais tempo no dia a dia? O que você quer que os agentes façam — e o que prefere continuar fazendo.</p>
+                  <div class="flow-item-tags">
+                    <span>Rotina</span><span>·</span>
+                    <span>Prioridades</span><span>·</span>
+                    <span>Limites</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+         
+
+          <!-- ====== BOTÃO PRA ABRIR O WIZARD ====== -->
+          <div class="training-cta-block">
+            <p class="training-cta-label">Pronto pra treinar seu time?</p>
+            <button type="button" id="start-wizard-btn" class="btn-glow btn-glow-xl">
+              <span class="btn-glow-bg"></span>
+              <span class="btn-glow-content">
+                Configurar meus agentes
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- ====== CHECKLIST DE VERIFICAÇÃO ====== -->
+          <div class="verify-checklist">
+            <h4 class="verify-title">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1z" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8l2 2 3.5-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Antes de seguir, confira:
+            </h4>
+            <div class="check-block">
+              <div class="task"><div class="task-row">
+                <input type="checkbox" class="checkbox" id="t-1-1" data-task />
+                <label class="task-text" for="t-1-1">Contei sobre meu negócio (horário, localização, regras)</label>
+              </div></div>
+              <div class="task"><div class="task-row">
+                <input type="checkbox" class="checkbox" id="t-1-2" data-task />
+                <label class="task-text" for="t-1-2">Defini como a IA pode me ajudar no dia a dia</label>
+              </div></div>
+              <div class="task"><div class="task-row">
+                <input type="checkbox" class="checkbox" id="t-1-3" data-task />
+                <label class="task-text" for="t-1-3">Enviei o documento pro Waz</label>
+              </div></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ETAPA 2 -->
+        <div class="stage" id="stage-2">
+          <div class="stage-head">
+            <span class="stage-num">Etapa 02</span>
             <span class="stage-title">Monte seu catálogo</span>
           </div>
 
           <p class="stage-intro">O catálogo é a base de tudo — é de onde o Waz puxa informações pra responder clientes e o Fin pra gerar links de pagamento. Existem duas formas de cadastrar:</p>
 
-          <!-- Seletor de caminho -->
-          <div class="path-selector">
-            <button class="path-tab is-active" data-path="manual">
-              <span class="path-tab-icon">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/>
-                  <path d="M6 9h6M9 6v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <span class="path-tab-text">
-                <strong>Cadastro manual</strong>
-                <small>Adicione produtos um por um no app</small>
-              </span>
-            </button>
-            <button class="path-tab" data-path="waz">
-              <span class="path-tab-icon">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 4.5A1.5 1.5 0 014.5 3h9A1.5 1.5 0 0115 4.5v9a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 013 13.5v-9z" stroke="currentColor" stroke-width="1.4"/>
-                  <path d="M6 7h6M6 9.5h4M6 12h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <span class="path-tab-text">
-                <strong>Enviar pro Waz</strong>
-                <small>Mande um PDF, foto ou planilha</small>
-              </span>
-            </button>
+          <!-- Pergunta situacional -->
+          <div class="situation-question" id="catalog-question">
+            <h4 class="situation-q">Você já tem seu cardápio ou lista de produtos em algum formato?</h4>
+
+            <div class="situation-options">
+              <!-- Opção Sim (recomendada) -->
+              <button class="situation-opt is-recommended" data-shows="catalog-waz" type="button">
+                <div class="situation-opt-header">
+                  <span class="situation-opt-check">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <strong>Sim, tenho algo pronto</strong>
+                  <span class="tag-recommended">recomendado</span>
+                </div>
+                <p class="situation-opt-desc">PDF, foto do cardápio, lista no bloco de notas, planilha, ou até mensagem do WhatsApp com os produtos.</p>
+                <span class="situation-opt-time">~2 min</span>
+              </button>
+
+              <!-- Opção Não -->
+              <button class="situation-opt" data-shows="catalog-manual" type="button">
+                <div class="situation-opt-header">
+                  <span class="situation-opt-check">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </span>
+                  <strong>Não, vou criar do zero</strong>
+                </div>
+                <p class="situation-opt-desc">Cadastrar produto por produto direto no app.</p>
+                <span class="situation-opt-time">~15 min</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Caminho A: Manual -->
-          <div class="path-content is-visible" id="path-manual">
+          <!-- Tutorial: Caminho Manual -->
+          <div class="situation-content" id="catalog-manual">
             <div class="tutorial-steps">
 
               <div class="tutorial-step">
@@ -441,10 +546,13 @@
               </div>
 
             </div>
+            <button class="situation-switch" data-shows="catalog-waz" type="button">
+              ← Tenho um arquivo pronto, quero enviar pro Waz
+            </button>
           </div>
 
-          <!-- Caminho B: Waz -->
-          <div class="path-content" id="path-waz">
+          <!-- Tutorial: Caminho Waz (recomendado) -->
+          <div class="situation-content" id="catalog-waz">
             <div class="tutorial-steps">
 
               <div class="tutorial-step">
@@ -457,6 +565,7 @@
                     <li><strong>Foto</strong> de uma tabela de preços (pode ser do caderno mesmo)</li>
                     <li><strong>Planilha</strong> com nome e preço</li>
                     <li><strong>Lista no bloco de notas</strong> do celular</li>
+                    <li><strong>Print de conversa</strong> do WhatsApp onde você listou os produtos</li>
                   </ul>
                   <p style="margin-top: 8px; color: var(--ink-3); font-size: 13px;">Não precisa ser bonito — o Waz entende qualquer formato.</p>
                 </div>
@@ -501,6 +610,9 @@
               </div>
 
             </div>
+            <button class="situation-switch" data-shows="catalog-manual" type="button">
+              Prefiro cadastrar manualmente →
+            </button>
           </div>
 
           <!-- Checklist de verificação -->
@@ -512,135 +624,24 @@
             <div class="check-block">
               <div class="task">
                 <div class="task-row">
-                  <input type="checkbox" class="checkbox" id="t-1-1" data-task />
-                  <label class="task-text" for="t-1-1">Seus principais produtos estão cadastrados</label>
+                  <input type="checkbox" class="checkbox" id="t-2-1" data-task />
+                  <label class="task-text" for="t-2-1">Seus principais produtos estão cadastrados</label>
                 </div>
               </div>
               <div class="task">
                 <div class="task-row">
-                  <input type="checkbox" class="checkbox" id="t-1-2" data-task />
-                  <label class="task-text" for="t-1-2">Os preços estão corretos e atualizados</label>
+                  <input type="checkbox" class="checkbox" id="t-2-2" data-task />
+                  <label class="task-text" for="t-2-2">Os preços estão corretos e atualizados</label>
                 </div>
               </div>
               <div class="task">
                 <div class="task-row">
-                  <input type="checkbox" class="checkbox" id="t-1-3" data-task />
-                  <label class="task-text" for="t-1-3">As imagens estão cadastradas <span class="tag-recommended">recomendado</span></label>
+                  <input type="checkbox" class="checkbox" id="t-2-3" data-task />
+                  <label class="task-text" for="t-2-3">As imagens estão cadastradas <span class="tag-recommended">recomendado</span></label>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- ETAPA 2 -->
-        <div class="stage" id="stage-2">
-          <div class="stage-head">
-            <span class="stage-num">Etapa 02</span>
-            <span class="stage-title">Treine seus agentes</span>
-          </div>
-
-          <p class="stage-intro">É como contratar funcionários novos — quanto mais você ensinar, melhores os resultados e menos tempo vai perder corrigindo. Essa etapa tem dois momentos:</p>
-
-          <!-- Dois fluxos visuais (spotlight rotativo) -->
-          <div class="flow-explorer" role="tablist" aria-label="Partes do treinamento">
-
-            <!-- Card 1: Sobre seu negócio -->
-            <div class="flow-item is-active is-running" role="tab" aria-selected="true" tabindex="0">
-              <div class="flow-bar">
-                <div class="flow-bar-fill"></div>
-              </div>
-              <div class="flow-item-content">
-                <div class="flow-item-header">
-                  <div class="flow-item-number">1</div>
-                  <div>
-                    <div class="flow-item-title">Conte sobre seu negócio</div>
-                  </div>
-                </div>
-                <div class="flow-item-details">
-                  <p class="flow-item-desc">Informações que o Waz precisa pra responder suas clientes: horário, localização, regras, formas de pagamento e tom de voz.</p>
-                  <div class="flow-item-tags">
-                    <span>Horário</span><span>·</span>
-                    <span>Localização</span><span>·</span>
-                    <span>Regras</span><span>·</span>
-                    <span>Tom de voz</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Linha conectora horizontal -->
-            <div class="flow-connector"></div>
-
-            <!-- Card 2: Como a IA pode te ajudar -->
-            <div class="flow-item" role="tab" aria-selected="false" tabindex="0">
-              <div class="flow-bar">
-                <div class="flow-bar-fill"></div>
-              </div>
-              <div class="flow-item-content">
-                <div class="flow-item-header">
-                  <div class="flow-item-number">2</div>
-                  <div>
-                    <div class="flow-item-title">Diga como a IA pode te ajudar</div>
-                  </div>
-                </div>
-                <div class="flow-item-details">
-                  <p class="flow-item-desc">O que te toma mais tempo no dia a dia? O que você quer que os agentes façam — e o que prefere continuar fazendo.</p>
-                  <div class="flow-item-tags">
-                    <span>Rotina</span><span>·</span>
-                    <span>Prioridades</span><span>·</span>
-                    <span>Limites</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- ====== OVERVIEW: como funciona o treinamento ====== -->
-          <div class="training-overview">
-            <h3 class="training-overview-title">Seu novo time está quase pronto.<br>Agora, ensine tudo sobre sua confeitaria.</h3>
-            <p class="training-overview-body">No formulário guiado abaixo, a gente faz algumas perguntas e monta o perfil completo do seu negócio — é como treinar um funcionário novo. No final, você <strong>baixa um PDF prontinho</strong> e envia pro Waz na conversa dele. É assim que ele aprende tudo de uma vez.</p>
-            <ol class="training-overview-steps">
-              <li>Responda o formulário guiado (por texto ou áudio)</li>
-              <li>Baixe o PDF gerado no final</li>
-              <li>Envie o PDF pro Waz no app</li>
-            </ol>
-          </div>
-
-          <!-- ====== BOTÃO PRA ABRIR O WIZARD ====== -->
-          <div class="training-cta-block">
-            <p class="training-cta-label">Pronto pra treinar seu time?</p>
-            <button type="button" id="start-wizard-btn" class="btn-glow btn-glow-xl">
-              <span class="btn-glow-bg"></span>
-              <span class="btn-glow-content">
-                Configurar meus agentes
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
-          </div>
-
-          <!-- ====== CHECKLIST DE VERIFICAÇÃO ====== -->
-          <div class="verify-checklist">
-            <h4 class="verify-title">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1z" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8l2 2 3.5-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Antes de seguir, confira:
-            </h4>
-            <div class="check-block">
-              <div class="task"><div class="task-row">
-                <input type="checkbox" class="checkbox" id="t-2-1" data-task />
-                <label class="task-text" for="t-2-1">Contei sobre meu negócio (horário, localização, regras)</label>
-              </div></div>
-              <div class="task"><div class="task-row">
-                <input type="checkbox" class="checkbox" id="t-2-2" data-task />
-                <label class="task-text" for="t-2-2">Defini como a IA pode me ajudar no dia a dia</label>
-              </div></div>
-              <div class="task"><div class="task-row">
-                <input type="checkbox" class="checkbox" id="t-2-3" data-task />
-                <label class="task-text" for="t-2-3">Enviei o documento pro Waz</label>
-              </div></div>
-            </div>
-          </div>
-
         </div>
 
         <!-- ETAPA 3 -->

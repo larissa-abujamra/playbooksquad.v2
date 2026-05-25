@@ -39,7 +39,7 @@
   });
 
   // ============ Setup progress (localStorage) ============
-  const STORAGE_KEY = 'squad-playbook-confeitarias-v3';
+  const STORAGE_KEY = 'squad-playbook-confeitarias-v4';
   const taskInputs = document.querySelectorAll('[data-task]');
   const totalEl = document.getElementById('prog-total');
   const doneEl = document.getElementById('prog-done');
@@ -1083,7 +1083,7 @@
       });
     });
 
-    // (Auto-check de t-2-3 acontece no downloadPDF — quando o usuário baixa o PDF)
+    // (Auto-check de t-1-3 acontece no downloadPDF — quando o usuário baixa o PDF)
 
     updateWizardProgress();
   }
@@ -1221,10 +1221,10 @@
 
     doc.save('perfil-negocio-squad.pdf');
 
-    const t23 = document.getElementById('t-2-3');
-    if (t23 && !t23.checked) {
-      t23.checked = true;
-      t23.dispatchEvent(new Event('change'));
+    const tWazDoc = document.getElementById('t-1-3'); // "Enviei o documento pro Waz" (Etapa 1: Treinamento)
+    if (tWazDoc && !tWazDoc.checked) {
+      tWazDoc.checked = true;
+      tWazDoc.dispatchEvent(new Event('change'));
     }
   }
 
@@ -1260,7 +1260,7 @@
         result: '+3x posts por semana (placeholder)',
       },
       {
-        name: 'Cookies da Nola',
+        name: 'Oito Oitenta',
         role: 'Cookies artesanais · São Paulo',
         quote: '"O Fin me salvou. Eu não sabia quanto tava lucrando de verdade porque não controlava nada. Agora tenho fluxo de caixa atualizado, sei exatamente quem pagou e quem não pagou, e os links de Pix vão direto pelo WhatsApp." (placeholder)',
         agents: ['Waz', 'Fin'],
@@ -1330,24 +1330,29 @@
     });
   }
 
-  /* ---- Path Selector (Catálogo: manual vs Waz) ---- */
-  document.querySelectorAll('.path-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const path = tab.dataset.path;
+  /* ---- Situation Question (Catálogo: já tem arquivo vs criar do zero) ---- */
+  function showSituationContent(scope, targetId) {
+    // Atualiza seleção das opções
+    scope.querySelectorAll('.situation-opt').forEach(o => {
+      o.classList.toggle('is-selected', o.dataset.shows === targetId);
+    });
+    // Troca o conteúdo visível
+    scope.querySelectorAll('.situation-content').forEach(c => {
+      c.classList.remove('is-visible');
+    });
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.classList.add('is-visible');
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }
 
-      // Toggle tabs
-      tab.closest('.path-selector').querySelectorAll('.path-tab').forEach(t => {
-        t.classList.remove('is-active');
-      });
-      tab.classList.add('is-active');
-
-      // Toggle content
-      const stage = tab.closest('.stage');
-      stage.querySelectorAll('.path-content').forEach(c => {
-        c.classList.remove('is-visible');
-      });
-      const target = stage.querySelector(`#path-${path}`);
-      if (target) target.classList.add('is-visible');
+  document.querySelectorAll('.situation-opt, .situation-switch').forEach(el => {
+    el.addEventListener('click', () => {
+      const scope = el.closest('.stage') || document;
+      showSituationContent(scope, el.dataset.shows);
     });
   });
 
@@ -1373,33 +1378,48 @@
       }
     };
 
+    // Pausa: hover (temporária) OU clique (travada). A barra congela em qualquer um.
+    let flowHoverPause = false;
+    let flowClickLock = false;
+    const syncFlowPause = () => {
+      flowExplorer.classList.toggle('is-paused', flowHoverPause || flowClickLock);
+    };
+
     flowItems.forEach((item, idx) => {
       const fill = item.querySelector('.flow-bar-fill');
       if (fill) {
         fill.addEventListener('animationend', (e) => {
           // Só avança quando a barra de preenchimento completa (não no loop do gradiente)
-          if (e.animationName === 'flow-fill') {
-            if (idx === flowActiveIndex && flowInView && !reducedMotion) {
-              setFlowActive((flowActiveIndex + 1) % flowItems.length);
-            }
+          if (e.animationName !== 'flow-fill') return;
+          if (flowExplorer.classList.contains('is-paused')) return;
+          if (idx === flowActiveIndex && flowInView && !reducedMotion) {
+            setFlowActive((flowActiveIndex + 1) % flowItems.length);
           }
         });
       }
-      const activate = () => {
-        if (idx !== flowActiveIndex) setFlowActive(idx);
-        else if (flowInView && !reducedMotion) {
-          item.classList.remove('is-running');
-          void item.offsetWidth;
-          item.classList.add('is-running');
+      // Clicar num card seleciona ele e trava a pausa (tempo pra ler).
+      // Clicar de novo no card ativo alterna pausa/retomada.
+      item.addEventListener('click', () => {
+        if (idx !== flowActiveIndex) {
+          flowClickLock = true;
+          setFlowActive(idx);
+        } else {
+          flowClickLock = !flowClickLock;
+          if (!flowClickLock) setFlowActive(idx); // retoma com barra nova
         }
-      };
-      item.addEventListener('mouseenter', activate);
-      item.addEventListener('click', activate);
-      item.addEventListener('focus', activate);
+        syncFlowPause();
+      });
+      item.addEventListener('focus', () => {
+        if (idx !== flowActiveIndex) setFlowActive(idx);
+      });
       item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
       });
     });
+
+    // Hover no explorer pausa; sair retoma (a não ser que tenha travado por clique).
+    flowExplorer.addEventListener('mouseenter', () => { flowHoverPause = true; syncFlowPause(); });
+    flowExplorer.addEventListener('mouseleave', () => { flowHoverPause = false; syncFlowPause(); });
 
     const flowIO = new IntersectionObserver((entries) => {
       entries.forEach(e => {

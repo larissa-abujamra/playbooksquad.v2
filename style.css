@@ -168,10 +168,10 @@
     border: 1.5px solid var(--waz);
   }
   .nav-sub[data-nav-stage="1"] .nav-sub-status[data-status="done"] {
-    background: var(--fin); border-color: var(--fin);
+    background: var(--maky); border-color: var(--maky);
   }
   .nav-sub[data-nav-stage="2"] .nav-sub-status[data-status="done"] {
-    background: var(--maky); border-color: var(--maky);
+    background: var(--fin); border-color: var(--fin);
   }
   .nav-sub-name {
     flex: 1;
@@ -195,8 +195,8 @@
   }
   .nav-sub.is-complete { color: var(--ink-2); }
   .nav-sub.is-complete .nav-sub-count { color: var(--waz); opacity: 1; }
-  .nav-sub[data-nav-stage="1"].is-complete .nav-sub-count { color: var(--fin); }
-  .nav-sub[data-nav-stage="2"].is-complete .nav-sub-count { color: var(--maky); }
+  .nav-sub[data-nav-stage="1"].is-complete .nav-sub-count { color: var(--maky); }
+  .nav-sub[data-nav-stage="2"].is-complete .nav-sub-count { color: var(--fin); }
   .nav-sub.has-progress { color: var(--ink-2); }
   .nav-sub.is-future { opacity: .55; }
   .nav-sub.is-future:hover { opacity: .85; }
@@ -809,12 +809,12 @@
     }
   }
 
-  /* ============ Spotlight: foco nos CTAs (Etapa 2 e Etapa 3) ============ */
+  /* ============ Spotlight: foco nos CTAs (Etapa 1 e Etapa 3) ============ */
   /* Transição suave nos blocos esmaecíveis — vale pros dois sentidos (liga/desliga) */
   .content > *,
   .doc > *,
   #setup > *,
-  #stage-2 > *,
+  #stage-1 > *,
   #stage-3 > *,
   #stage-3 > .check-block > * {
     transition: opacity 0.45s ease;
@@ -831,9 +831,9 @@
     pointer-events: none;
   }
 
-  /* Etapa 2 — mantém só o .training-cta-block aceso */
-  body.spotlight-training #setup > :not(#stage-2),
-  body.spotlight-training #stage-2 > :not(.training-cta-block) {
+  /* Etapa 1 — mantém só o .training-cta-block aceso */
+  body.spotlight-training #setup > :not(#stage-1),
+  body.spotlight-training #stage-1 > :not(.training-cta-block) {
     opacity: 0.12;
     pointer-events: none;
   }
@@ -848,7 +848,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .content > *, .doc > *, #setup > *,
-    #stage-2 > *, #stage-3 > *, #stage-3 > .check-block > * { transition: none; }
+    #stage-1 > *, #stage-3 > *, #stage-3 > .check-block > * { transition: none; }
   }
 
   /* ============ Overview screen ============ */
@@ -1341,6 +1341,22 @@
   .ov-cta-btn .arr { transition: transform .2s ease; }
   .ov-cta-btn:hover .arr { transform: translateX(3px); }
 
+  /* CTA gigante do fim da home — quase do tamanho do bloco .ov-cta */
+  #start-setup {
+    width: 100%;
+    padding: clamp(32px, 5vw, 52px);
+    border-radius: 16px;
+  }
+  #start-setup .btn-glow-content {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    gap: 14px;
+  }
+  #start-setup .btn-glow-content svg {
+    width: clamp(20px, 2.4vw, 28px);
+    height: clamp(20px, 2.4vw, 28px);
+  }
+
   .ov-foot {
     margin-top: 56px;
     padding-top: 22px;
@@ -1484,8 +1500,8 @@
     background: var(--stage-color, var(--ink));
     transition: width .5s ease;
   }
-  .tracker-line[data-stage="1"] { --stage-color: var(--fin); }
-  .tracker-line[data-stage="2"] { --stage-color: var(--maky); }
+  .tracker-line[data-stage="1"] { --stage-color: var(--maky); }
+  .tracker-line[data-stage="2"] { --stage-color: var(--fin); }
   .tracker-line[data-stage="3"] { --stage-color: var(--waz); }
 
   .tracker-summary {
@@ -2901,69 +2917,155 @@
   max-width: 600px;
 }
 
-/* ---- Path Selector (tabs manuais vs waz) ---- */
-.path-selector {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 28px;
+/* ---- Situation Question (já tem arquivo vs criar do zero) ---- */
+.situation-question {
+  margin-bottom: 8px;
 }
 
-.path-tab {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
+.situation-q {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+
+.situation-options {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 12px;
-  padding: 16px 18px;
+  margin-bottom: 8px;
+}
+
+/* Opção (botão clicável) */
+.situation-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
   border: 2px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--bg);
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
 }
-.path-tab:hover {
+
+.situation-opt:hover {
   border-color: var(--ink-3);
+  background: var(--bg-2);
 }
-.path-tab.is-active {
+
+/* Opção selecionada */
+.situation-opt.is-selected {
   border-color: var(--ink);
   background: var(--bg-2);
 }
 
-.path-tab-icon {
-  color: var(--ink-3);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.path-tab.is-active .path-tab-icon {
-  color: var(--ink);
+/* Opção recomendada — acento verde quando selecionada */
+.situation-opt.is-recommended {
+  border-color: var(--line);
+  position: relative;
 }
 
-.path-tab-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.situation-opt.is-recommended.is-selected {
+  border-color: var(--waz);
+  background: rgba(45, 182, 125, 0.04);
 }
-.path-tab-text strong {
-  font-size: 14px;
+
+/* Header da opção */
+.situation-opt-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.situation-opt-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.situation-opt.is-selected .situation-opt-check {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+
+.situation-opt.is-recommended.is-selected .situation-opt-check {
+  border-color: var(--waz);
+  background: var(--waz);
+}
+
+.situation-opt-header strong {
+  font-size: 15px;
   font-weight: 600;
   color: var(--ink);
 }
-.path-tab-text small {
-  font-size: 12px;
+
+/* Descrição */
+.situation-opt-desc {
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--ink-3);
+  margin: 0;
 }
 
-/* ---- Path Content (show/hide) ---- */
-.path-content {
+/* Tempo estimado */
+.situation-opt-time {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  margin-top: auto;
+}
+
+.situation-opt.is-recommended .situation-opt-time {
+  color: var(--waz);
+}
+
+/* ---- Situation Content (tutorial que aparece após escolha) ---- */
+.situation-content {
   display: none;
+  animation: fadeSlideIn 0.35s ease both;
 }
-.path-content.is-visible {
+
+.situation-content.is-visible {
   display: block;
-  animation: fadeIn 0.3s ease;
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Switch link (ver outro caminho) ---- */
+.situation-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--ink-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-top: 8px;
+  transition: color 0.15s ease;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.situation-switch:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ---- Tutorial Steps ---- */
@@ -3127,12 +3229,15 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
-  .path-selector {
-    flex-direction: column;
-    gap: 8px;
+  .situation-options {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
-  .path-tab {
-    padding: 14px 16px;
+  .situation-opt {
+    padding: 16px;
+  }
+  .situation-q {
+    font-size: 16px;
   }
   .tutorial-step {
     gap: 12px;
@@ -3202,7 +3307,13 @@
 }
 
 .flow-item.is-running .flow-bar-fill {
-  animation: flow-fill 5s linear forwards, flow-gradient-shift 3s ease-in-out infinite;
+  animation: flow-fill 7s linear forwards, flow-gradient-shift 3s ease-in-out infinite;
+}
+
+/* Hover ou clique (is-paused) congela a barra — dá tempo de ler */
+.flow-explorer:hover .flow-bar-fill,
+.flow-explorer.is-paused .flow-bar-fill {
+  animation-play-state: paused;
 }
 
 @keyframes flow-fill {
@@ -3281,18 +3392,8 @@
   margin-top: 2px;
 }
 
-/* ---- Details (expand/collapse) ---- */
+/* ---- Details (sempre visíveis; o atenuado vem da opacidade do .flow-item) ---- */
 .flow-item-details {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
-  margin-top: 0;
-}
-
-.flow-item.is-active .flow-item-details {
-  max-height: 200px;
-  opacity: 1;
   margin-top: 14px;
 }
 
