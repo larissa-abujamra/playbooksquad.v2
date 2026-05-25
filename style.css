@@ -2803,23 +2803,25 @@
 
   /* Name */
   .tcard-name {
+    font-family: 'DM Sans', sans-serif;
     font-size: 18px;
-    font-weight: 400;
-    font-style: italic;
-    color: rgba(31, 27, 29, 0.65);
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.02em;
+    color: rgba(31, 27, 29, 0.92);
     text-align: center;
-    margin: 16px 0 4px;
+    margin: 16px 0 6px;
   }
 
-  /* Role */
+  /* Role (label estilo DM Mono, como os eyebrows da página) */
   .tcard-role {
-    font-size: 13px;
-    color: rgba(31, 27, 29, 0.5);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(31, 27, 29, 0.45);
     text-align: center;
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    text-decoration-thickness: 1px;
-    font-style: italic;
     margin: 0;
   }
 
@@ -2871,7 +2873,7 @@
     max-height: 90vh;
     overflow-y: auto;
     margin-top: 5vh;
-    background: linear-gradient(180deg, #F8F7F4 0%, #FFF9EB 100%);
+    background: linear-gradient(180deg, #F8F7F4 0%, #ebecff 100%);
     border-radius: 24px;
     padding: 40px 48px;
     animation: overlaySlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -2906,20 +2908,21 @@
 
   /* Overlay text */
   .tcard-overlay-role {
-    font-size: 16px;
-    color: rgba(31, 27, 29, 0.55);
-    text-decoration: underline;
-    text-underline-offset: 8px;
-    text-decoration-thickness: 1px;
-    margin: 0 0 8px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(31, 27, 29, 0.45);
+    margin: 0 0 10px;
   }
 
   .tcard-overlay-name {
+    font-family: 'DM Sans', sans-serif;
     font-size: 32px;
-    font-weight: 400;
-    font-style: italic;
-    color: rgba(31, 27, 29, 0.7);
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    color: rgba(31, 27, 29, 0.92);
     margin: 0 0 32px;
     letter-spacing: -0.01em;
   }
@@ -2934,12 +2937,13 @@
   }
 
   .tcard-overlay-text {
-    font-size: 24px;
-    line-height: 1.5;
-    color: rgba(31, 27, 29, 0.6);
-    font-weight: 300;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    line-height: 1.55;
+    color: rgba(31, 27, 29, 0.72);
+    font-weight: 400;
     margin: 0;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
   }
 
   .tcard-overlay-agents {
