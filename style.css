@@ -3436,14 +3436,6 @@
 }
 
 /* ---- Connector line between cards ---- */
-.flow-connector {
-  width: 32px;
-  height: 3px;
-  background: var(--line);
-  border-radius: 999px;
-  flex-shrink: 0;
-  margin-top: 0; /* alinha com o topo das bars */
-}
 
 /* ---- Content ---- */
 .flow-item-content {
@@ -3845,11 +3837,6 @@
   .flow-explorer {
     flex-direction: column;
     gap: 0;
-  }
-  .flow-connector {
-    width: 3px;
-    height: 24px;
-    margin-left: 14px;
   }
   .flow-bar {
     width: 100%;
