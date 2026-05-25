@@ -476,6 +476,7 @@
   #stage-2,
   #stage-3,
   #stage-4 { border-top: 1px solid var(--line); }
+  #stage-4 { padding-top: 72px; } /* mais respiro entre a linha e "Etapa 04" */
   .stage-num {
     font-family: 'DM Mono', monospace;
     font-size: 12px; letter-spacing: .08em; color: var(--ink-3);
@@ -1436,8 +1437,7 @@
     border-color: var(--stage-color);
     background: var(--stage-color);
   }
-  /* Etapa 4 (automático): dot em gradiente colorido (como o da timeline), distinto do verde da Etapa 3 */
-  .tracker-node[data-stage="4"].is-active .node-circle,
+  /* Etapa 4 (automático): dot preenchido com gradiente só quando concluída (todas as boxes marcadas) */
   .tracker-node[data-stage="4"].is-done .node-circle {
     background: linear-gradient(135deg, #E91E8C, #8B5CF6, #2563EB, #2DB67D);
     border-color: transparent;
