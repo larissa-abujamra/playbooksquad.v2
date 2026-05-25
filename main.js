@@ -1454,3 +1454,46 @@
     }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
     io.observe(el);
   });
+
+  // ============ Fluxo de integração (Etapa 3): intro -> checklist -> agendar ============
+  const intStage = document.getElementById('integration-stage');
+  if (intStage) {
+    const introSlide = intStage.querySelector('.slide-intro');
+    const checklistSlide = intStage.querySelector('.slide-checklist');
+    const startBtn = document.getElementById('integration-start');
+    const checks = Array.from(intStage.querySelectorAll('.int-check-box'));
+    const schedule = document.getElementById('integration-schedule');
+    const hint = document.getElementById('integration-locked-hint');
+    const t34 = document.getElementById('t-3-4');
+
+    const setStageHeight = (el) => { if (el) intStage.style.height = el.offsetHeight + 'px'; };
+
+    // Clicar no gatilho: swipe da intro pro checklist
+    if (startBtn) {
+      startBtn.addEventListener('click', () => {
+        setStageHeight(introSlide);            // congela a altura atual (pra transicionar)
+        requestAnimationFrame(() => {
+          intStage.classList.add('show');
+          setStageHeight(checklistSlide);
+        });
+      });
+    }
+
+    // Libera o botão de agendar só quando todos os itens estão marcados
+    const syncChecklist = () => {
+      const all = checks.length > 0 && checks.every(c => c.checked);
+      if (schedule) schedule.classList.toggle('is-locked', !all);
+      if (hint) hint.style.display = all ? 'none' : '';
+      if (t34 && t34.checked !== all) {
+        t34.checked = all;
+        t34.dispatchEvent(new Event('change'));
+      }
+      if (intStage.classList.contains('show')) setStageHeight(checklistSlide); // botão apareceu/sumiu
+    };
+    checks.forEach(c => c.addEventListener('change', syncChecklist));
+    syncChecklist();
+
+    window.addEventListener('resize', () => {
+      setStageHeight(intStage.classList.contains('show') ? checklistSlide : introSlide);
+    });
+  }

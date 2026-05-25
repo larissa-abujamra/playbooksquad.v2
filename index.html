@@ -228,6 +228,9 @@
     </div>
   </aside>
 
+  <!-- Waz espiando, fixo na borda da sidebar -->
+  <img class="waz-peek" src="imgs/wazcharacter.png" alt="" aria-hidden="true">
+
   <!-- ============ MAIN CONTENT ============ -->
   <main class="content" id="top">
 
@@ -390,7 +393,6 @@
 
           <!-- ====== BOTÃO PRA ABRIR O WIZARD ====== -->
           <div class="training-cta-block">
-            <img class="waz-peek" src="imgs/wazcharacter.png" alt="" aria-hidden="true">
             <p class="training-cta-label">Pronto pra treinar seu time?</p>
             <button type="button" id="start-wizard-btn" class="btn-glow btn-glow-xl">
               <span class="btn-glow-bg"></span>
@@ -711,51 +713,84 @@
             </div>
 
 
-          <div class="integration-hero">
+          <div class="integration-hero" id="integration-hero">
             <span class="training-eyebrow">Etapa 03 - Parte 2</span>
             <div class="integration-hero-glow" aria-hidden="true"></div>
-            <div class="integration-hero-content">
-              <h3 class="integration-headline">Agora, vamos conectar<br>seus canais de atendimento.</h3>
-              <p class="integration-body">A integração do WhatsApp Business precisa ser feita junto com nosso time — é rápido, mas tem detalhes técnicos que a gente resolve pra você. O Squad cria um número novo de WhatsApp Business pro seu negócio.</p>
-              </div>
 
-              <a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener" class="btn-glow">
-                <span class="btn-glow-bg"></span>
-                <span class="btn-glow-content">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
-                    <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
-                    <path d="M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-                  </svg>
-                  Agendar call de integração
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            </div>
+            <div class="integration-stage" id="integration-stage">
 
-            <div class="task">
-              <div class="task-row">
-                <input type="checkbox" class="checkbox" id="t-3-4" data-task />
-                <div class="task-main">
-                  <label class="task-text" for="t-3-4">Checklist pra call de integração</label>
-                  <button class="details-toggle" aria-expanded="false" aria-controls="d-3-4"><span>Ver detalhes</span><span class="chev"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                  <div class="details" id="d-3-4">
-                    <div class="details-inner">
-                      <p>Tenha isso em mãos na hora da call:</p>
-                      <ul class="examples">
-                        <li>✅ Acesso ao Facebook/Meta do seu negócio (email e senha)</li>
-                        <li>✅ Saber login e senha da sua conta do Instagram e Meta (perfil comercial)</li>
-                        <li>✅ Documento com foto (CNPJ) — pro processo de verificação do número</li>
-                        <li>✅ Seu catálogo e tom de voz já configurados (Etapas 1 e 2)</li>
-                      </ul>
-                      <p style="margin-top: 8px; color: var(--ink-3); font-size: 14px;">A call dura cerca de 20 minutos. No final, seu WhatsApp Business já vai estar conectado e o Waz pronto pra atender.</p>
-                    </div>
-                  </div>
+              <!-- Slide 1: intro + gatilho -->
+              <div class="integration-slide slide-intro">
+                <div class="integration-hero-content">
+                  <h3 class="integration-headline">Agora, vamos conectar<br>seus canais de atendimento.</h3>
+                  <p class="integration-body">A integração do WhatsApp Business precisa ser feita junto com nosso time — é rápido, mas tem detalhes técnicos que a gente resolve pra você. O Squad cria um número novo de WhatsApp Business pro seu negócio.</p>
                 </div>
+                <button type="button" class="btn-glow" id="integration-start">
+                  <span class="btn-glow-bg"></span>
+                  <span class="btn-glow-content">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+                      <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
+                      <path d="M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    </svg>
+                    Agendar call de integração
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
               </div>
+
+              <!-- Slide 2: checklist (entra com swipe) -->
+              <div class="integration-slide slide-checklist">
+                <div class="integration-hero-content">
+                  <h3 class="integration-headline">Antes de agendar,<br>confira se tem tudo em mãos.</h3>
+                  <p class="integration-body">Marque cada item. Quando tudo estiver pronto, o botão de agendamento libera.</p>
+                </div>
+                <div class="integration-checklist">
+                  <label class="int-check">
+                    <input type="checkbox" class="int-check-box" id="chk-int-1">
+                    <span class="int-check-mark" aria-hidden="true"></span>
+                    <span class="int-check-text">Acesso ao Facebook/Meta do seu negócio (email e senha)</span>
+                  </label>
+                  <label class="int-check">
+                    <input type="checkbox" class="int-check-box" id="chk-int-2">
+                    <span class="int-check-mark" aria-hidden="true"></span>
+                    <span class="int-check-text">Login e senha da sua conta do Instagram e Meta (perfil comercial)</span>
+                  </label>
+                  <label class="int-check">
+                    <input type="checkbox" class="int-check-box" id="chk-int-3">
+                    <span class="int-check-mark" aria-hidden="true"></span>
+                    <span class="int-check-text">Documento com foto e CNPJ — pro processo de verificação do número</span>
+                  </label>
+                  <label class="int-check">
+                    <input type="checkbox" class="int-check-box" id="chk-int-4">
+                    <span class="int-check-mark" aria-hidden="true"></span>
+                    <span class="int-check-text">Seu catálogo e tom de voz já configurados (Etapas 1 e 2)</span>
+                  </label>
+                </div>
+                <a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener" class="btn-glow integration-schedule is-locked" id="integration-schedule">
+                  <span class="btn-glow-bg"></span>
+                  <span class="btn-glow-content">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+                      <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
+                      <path d="M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    </svg>
+                    Agendar call de integração
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+                <p class="integration-locked-hint" id="integration-locked-hint">Marque todos os itens acima pra liberar o agendamento.</p>
+              </div>
+
             </div>
+
+            <!-- Progresso (Etapa 3): marcado automaticamente quando o checklist é concluído -->
+            <input type="checkbox" id="t-3-4" data-task hidden tabindex="-1" aria-hidden="true">
+          </div>
           </div>
 
           <div class="callout fin">
@@ -869,7 +904,7 @@
           <details class="faq"><summary>Posso usar só um agente e não os três?<span class="chev"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="faq-a">Sim! Cada agente é independente. Comece com o Waz e ative os outros quando quiser.</div></details>
           <details class="faq"><summary>A Maky posta sem eu aprovar?<span class="chev"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="faq-a">Não. Ela cria o conteúdo e manda pra sua aprovação. Só publica quando você autorizar.</div></details>
           <details class="faq"><summary>Preciso de WhatsApp Business?<span class="chev"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="faq-a">Sim, é obrigatório. É grátis e você migra do WhatsApp normal sem perder conversas.</div></details>
-          <details class="faq"><summary>Minha cliente quer falar comigo, não com o robô.<span class="chev"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="faq-a">O Waz tem escalação pra humano. Quando precisa de você, ele te notifica e você assume.</div></details>
+          <details class="faq"><summary>Meu cliente quer falar comigo, não com o robô.<span class="chev"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="faq-a">O Waz tem escalação pra humano. Quando precisa de você, ele te notifica e você assume.</div></details>
           <details class="faq"><summary>Quanto tempo leva pra configurar tudo?<span class="chev"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><div class="faq-a">A conexão das redes e o catálogo levam uns 20 minutos. O treinamento do Waz é o mais legal — você vai conversando com ele no seu ritmo, ensinando sobre sua confeitaria. A maioria das confeiteiras configura o básico em uma tarde e vai refinando ao longo da primeira semana.</div></details>
         </div>
       </section>
@@ -878,16 +913,15 @@
       <section class="section" id="suporte">
         <div class="section-eyebrow">Suporte</div>
         <h2>Precisa de ajuda?</h2>
-        <p class="sub">Se travou em algum passo, a gente resolve rápido. Nosso time tá no WhatsApp.</p>
+        <p class="sub">Se travou em algum passo, a gente resolve rápido. Nosso time está no WhatsApp.</p>
 
         <div class="block" style="margin-top: 22px;">
-          <p style="color: var(--ink); font-size: 16px;">Sem fila! Manda mensagem e a gente te responde direto no WhatsApp.</p>
+          <p style="color: var(--ink); font-size: 16px;">Sem fila! Mande uma mensagem e a gente te responde direto no WhatsApp.</p>
           <div style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
             <a class="btn" href="https://wa.me/SEUNUMERO">
               Falar com o time
               <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <span class="mono" style="color: var(--ink-2); font-size: 13px;">seg–sex · 9h às 18h</span>
           </div>
         </div>
 

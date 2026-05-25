@@ -2445,6 +2445,106 @@
     color: rgba(255, 255, 255, 0.55);
     margin: 0 0 28px;
   }
+
+  /* ---- Fluxo de integração: intro -> checklist (swipe) ---- */
+  .integration-stage {
+    position: relative;
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .integration-slide {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+  /* o checklist começa fora da tela, à direita */
+  .slide-checklist {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    transform: translateX(104%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .integration-stage.show .slide-intro {
+    transform: translateX(-104%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .integration-stage.show .slide-checklist {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Checklist (boxes marcáveis no hero escuro) */
+  .integration-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 460px;
+    margin: 4px auto 22px;
+    text-align: left;
+  }
+  .int-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .int-check:hover { border-color: rgba(255, 255, 255, 0.3); }
+  .int-check-box {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .int-check-mark {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    flex-shrink: 0;
+    margin-top: 1px;
+    position: relative;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .int-check-box:checked + .int-check-mark {
+    background: var(--waz);
+    border-color: var(--waz);
+  }
+  .int-check-box:checked + .int-check-mark::after {
+    content: '';
+    position: absolute;
+    left: 6px; top: 2px;
+    width: 5px; height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .int-check-box:focus-visible + .int-check-mark {
+    box-shadow: 0 0 0 3px rgba(45, 182, 125, 0.45);
+  }
+  .int-check-text {
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .int-check-box:checked ~ .int-check-text { color: #fff; }
+
+  /* Botão de agendamento: escondido até checar tudo */
+  .integration-schedule.is-locked { display: none; }
+  .integration-schedule:not(.is-locked) {
+    animation: fadeSlideIn 0.45s ease both;
+  }
+  .integration-locked-hint {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 2px 0 0;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.02em;
+  }
   .integration-stats {
     display: flex;
     justify-content: center;
@@ -3648,17 +3748,18 @@
   position: relative;
 }
 
-/* Waz espiando pra fora da sidebar, na linha do "Pronto pra treinar seu time?" */
+/* Waz fixo na borda direita da sidebar — sempre parece estar espiando */
 .waz-peek {
-  position: absolute;
-  left: -200px;
-  top: -26px;
-  width: 132px;
+  position: fixed;
+  left: calc(var(--sidebar-w) - 18px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
   height: auto;
   pointer-events: none;
   user-select: none;
-  z-index: 5;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.18));
+  z-index: 40;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
 }
 @media (max-width: 900px) {
   .waz-peek { display: none; } /* sidebar some no mobile */
