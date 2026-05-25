@@ -1122,6 +1122,15 @@
     return ans ? String(ans) : '';
   }
 
+  // O font padrão do jsPDF não suporta emoji — remove pra não quebrar o texto do PDF
+  function pdfSafe(str) {
+    return String(str == null ? '' : str)
+      .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}\u{2300}-\u{23FF}\u{FE00}-\u{FE0F}\u{200D}\u{20E3}]/gu, '')
+      .replace(/\s{2,}/g, ' ')          // colapsa espaços
+      .replace(/\s+([—/:])\s*$/, '')    // remove separador solto no fim
+      .trim();
+  }
+
   function downloadPDF() {
     if (!window.jspdf || !window.jspdf.jsPDF) {
       alert('PDF ainda carregando — tenta de novo em 1 segundo.');
@@ -1193,7 +1202,7 @@
       filledRows.forEach(q => {
         const label = q.pdfLabel || q.q;
         const answer = formatAnswer(q).replace(/\s*\n\s*/g, ' / ');
-        const bullet = '•  ' + label + ': ' + answer;
+        const bullet = pdfSafe('•  ' + label + ': ' + answer);
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
         doc.setTextColor(17, 24, 39);
